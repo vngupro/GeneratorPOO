@@ -23,10 +23,6 @@ public class test : MonoBehaviour
             Debug.Log("Ressource " + name);
             base.AfficherInfos();
         }
-        public Bonus()
-        {
-         
-        }
     }
     class Malus : Ressource
     {
@@ -57,6 +53,6 @@ public class test : MonoBehaviour
             Debug.Log(RessouceList[i].name);
 
         }
-
+        Debug.Log(RessouceList.Count);
     }
 }
