@@ -25,6 +25,7 @@ public class EquipmentGenerator : MonoBehaviour
                 weaponRef.weapon = weaponList[weaponList.Count - 1];
                 Instantiate(weaponRef);
                 Debug.Log("Weapon Generate");
+                Debug.Log(weaponRef.weapon._name);
             }
             else
             {
@@ -32,6 +33,7 @@ public class EquipmentGenerator : MonoBehaviour
                 armorRef.armor = armorList[armorList.Count - 1];
                 Instantiate(armorRef);
                 Debug.Log("Armor Generate");
+                Debug.Log(armorRef.armor._name);
             }
 
             previousRng = rng;

@@ -31,7 +31,7 @@ public class Weapon : Equipment
         _criticalChance = Random.Range(0.0f, 100.0f);
         _criticalDamage = Random.Range(10.0f, 200.0f);
         int rngDamageType = Random.Range(0, 99);
-        _weaponType = (WeaponType)Random.Range(0, 9);
+        _weaponType = (WeaponType)(Random.Range(0, 9));
 
         do
         {
@@ -47,12 +47,13 @@ public class Weapon : Equipment
         {
             subDamageList.Add(CreateSubDamage());
         } while (subDamageList[subDamageList.Count - 1].subDamageType != SubDamageType.NONE);
+        _name = EquipementNameGenerator();
     }
 
     //Method
     public override string EquipementNameGenerator()
     {
-        string nameGenerate = "Weapon";
+        string nameGenerate = rarity.ToString() + " " + materialType.ToString() + " " + _weaponType.ToString();
         return nameGenerate;
     }
 
