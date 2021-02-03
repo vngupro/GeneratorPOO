@@ -15,19 +15,19 @@ public enum AttributeType
 
 public enum SubDamageType
 {
-    NONE,
-    SLASH,          //Bleed chance mandatory
-    BLUNT,          //Stun chance mandatory
-    PIERCE         //Ignore Defense (pc of physical damage)
+    NONE,          //0
+    SLASH,         //Bleed chance mandatory
+    BLUNT,         //Stun chance mandatory
+    PIERCE         //3 Ignore Defense (pc of physical damage)
 }
 public enum AilmentType
 {
-    NONE,
+    NONE,       //0
     BURN,
     FREEZE,
     STUN,
     POISON,
-    BLEED
+    BLEED       //5
 }
 
 public enum StatType
@@ -42,7 +42,7 @@ public enum StatType
 
 public enum WeaponType
 {
-    SWORD,
+    SWORD,              //0
     AXE,
     SPEAR,
     MACE,
@@ -51,19 +51,19 @@ public enum WeaponType
     BOW,
     SCEPTER,
     STAFF,
-    TOME
+    TOME                //9
 }
 
 public enum ArmorType
 {
-    HELMET,
+    HELMET,            //0
     SHOULDER,
     CHESTARMOR,
     PANTS,
     BOOTS,
     GLOVES,
     BELT,
-    SHIELD
+    SHIELD            //7
 }
 
 public enum MaterialType
@@ -79,17 +79,10 @@ public enum MaterialType
     ADAMANTIUM
 }
 
-public enum DamageType
-{
-    PHYSICAL,
-    MAGICAL
-}
-
 public enum ResistanceType
 {
     NONE,
     PHYSICAL,
-    MAGICAL,  
     FIRE,
     ICE,
     LIGHTNING,
