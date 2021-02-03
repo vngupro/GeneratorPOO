@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//EQUIPEMENT
 public enum AttributeType
 {
     NONE,                                                        //0
@@ -101,4 +102,13 @@ public enum RarityType
     Rare,
     Epic,
     Legendary                                                   //5
+}
+
+//ITEM
+public enum ItemTypes{
+    NONE,
+    WEAPON,
+    ARMOR,
+    BONUS,
+    MALUS
 }

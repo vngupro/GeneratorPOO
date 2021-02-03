@@ -9,13 +9,6 @@ public class EquipmentGenerator : MonoBehaviour
     private int rng = 0;
     private int previousRng = 0;
 
-    /*     
-     *   * Equipement_UI -> recuperer List<Equipment>
-         * Sprite pool 
-         * private override -> recuperer les valeurs de variables
-         * Unity Events -> automatic
-    */
-
     public void GenerateEquipment()
     {
         for(int i = 0; i < 3; i++)
@@ -26,15 +19,15 @@ public class EquipmentGenerator : MonoBehaviour
             if (rng < 50)
             {
                 equipmentList.Add(new Weapon());
-                Debug.Log(equipmentList[equipmentList.Count - 1].Name);
+                //Debug.Log(equipmentList[equipmentList.Count - 1].Name);
             }
             else
             {
                 equipmentList.Add(new Armor());
-                Debug.Log(equipmentList[equipmentList.Count - 1].Name);
+                //Debug.Log(equipmentList[equipmentList.Count - 1].Name);
             }
 
-            GameEvents.EquipmentGenerated.Invoke();
+            GameEvents.EquipmentGenerated.Invoke(equipmentList[equipmentList.Count -1]);
             previousRng = rng;
         }
     }
@@ -54,12 +47,27 @@ public class EquipmentGenerator : MonoBehaviour
         }
     }
 
+    /*     
+ *   * Equipement_UI -> recuperer List<Equipment>
+     * Sprite pool 
+     * private override -> recuperer les valeurs de variables
+     * Unity Events -> automatic
+*/
 
     /* Inventory Class Monobehavior
      * -> List<InventorySlot> slots;
      * 
      * InventorySlot -> Monobehavior
      * Item -> No monobehavior
+     * 
+     * Equipment 
+     *              -> Inherit de Item
+     * Ressource 
+     * 
+     * A chaque fois que tu generates E ou R
+     *      -> Instancie 1 Inventory Slot -> et tu fais passer en pointeur E ou R en tant que Item 
+                                             que tu stock dans InventorySlot.item;
+     * 
      * ItemWorld -> Monobehavior pour apparaitre dans le game
      * 
      * Item -> Ressources
