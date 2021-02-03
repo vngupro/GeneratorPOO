@@ -13,5 +13,4 @@ public class Equipment
     int _statLevelRequire = 0;
 
     int durability = 0;
-    Sprite sprite;
 }

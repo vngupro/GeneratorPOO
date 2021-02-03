@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class Weapon_GO : MonoBehaviour
 {
-    Weapon weapon;
+    public Weapon weapon;
+    [SerializeField] private List<Sprite> sprites = new List<Sprite>();
+
+    Sprite sprite;
+    private void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>().sprite;
+    }
 }
