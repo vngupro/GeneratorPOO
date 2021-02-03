@@ -42,41 +42,39 @@ public enum StatType
 
 public enum WeaponType
 {
-    SWORD,                                                      //0
-    AXE,
-    SPEAR,
-    MACE,
-    HAMMER,
-    DAGGERS,
-    BOW,
-    SCEPTER,
-    STAFF,
-    TOME                                                        //9
+    Sword,                                                      //0
+    Axe,
+    Spear,
+    Mace,
+    Hammer,
+    Daggers,
+    Bow,
+    Scepter,
+    Staff,
+    Tome                                                        //9
 }
 
 public enum ArmorType
 {
-    HELMET,                                                     //0
-    SHOULDER,
-    CHESTARMOR,
-    PANTS,
-    BOOTS,
-    GLOVES,
-    BELT,
-    SHIELD                                                      //7
+    Helmet,                                                     //0
+    ShoulderPad,
+    Plastron,
+    Pants,
+    Boots,
+    Gloves,
+    Belt,
+    Shield                                                      //7
 }
 
 public enum MaterialType
 {
-    COTON,                                                      //0
-    LEATHER,
-    BRONZE,
-    SILVER,
-    GOLD,
-    PLATINUM,
-    ORIHALCON,
-    MITRHIL,
-    ADAMANTIUM                                                  //8
+    Bronze,                                                     //0
+    Silver,
+    Gold,
+    Platinium,
+    Orihalcon,
+    Mithril,
+    Adamantium                                                  //6
 }
 
 public enum ResistanceType
@@ -93,4 +91,14 @@ public enum ResistanceType
     BLUNT,
     ELEMENTAL,
     AILMENT                                                     //11
+}
+
+public enum RarityType
+{
+    Broken,                                                     //0
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary                                                   //5
 }

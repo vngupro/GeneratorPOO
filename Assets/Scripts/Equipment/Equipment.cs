@@ -7,19 +7,18 @@ public class Equipment
     //Variable 
     public string _name = "";
     int _maxDurability = 0;
-    int _rarity = 0;
     int _level = 0;
     int _playerLevelRequire = 0;
     StatType _statRequire = StatType.NONE;
     int _statValueRequire = 0;
     int durability = 0;
+    public MaterialType materialType;
+    public RarityType rarity;
 
     //Constructor
     public Equipment()
     {
-        _name = EquipementNameGenerator();
         _maxDurability = Random.Range(100, 999);
-        _rarity = Random.Range(1, 9);
         _level = Random.Range(1, 99);
         _playerLevelRequire = Random.Range(1, 99);
         _statRequire = StatRequire();
@@ -28,7 +27,8 @@ public class Equipment
             _statValueRequire = Random.Range(0, 99);
         }
         durability = _maxDurability;
-        
+        materialType = (MaterialType)(Random.Range(0, 6));
+        rarity = (RarityType)(Random.Range(0, 5));   
     }
 
     //Method
