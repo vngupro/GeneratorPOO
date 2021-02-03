@@ -5,7 +5,7 @@ using UnityEngine;
 public class Equipment
 {
     //Variable 
-    protected string _name = "";
+    public string _name = "";
     int _maxDurability = 0;
     int _rarity = 0;
     int _level = 0;

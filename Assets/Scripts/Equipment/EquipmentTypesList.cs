@@ -4,45 +4,45 @@ using UnityEngine;
 
 public enum AttributeType
 {
-    NONE,
+    NONE,                                                        //0
     FIRE,
     ICE,
     LIGHTNING,
     POISON,
-    ACID
+    ACID                                                         //5
 
 }
 
 public enum SubDamageType
 {
-    NONE,          //0
+    NONE,                                                       //0
     SLASH,         //Bleed chance mandatory
     BLUNT,         //Stun chance mandatory
-    PIERCE         //3 Ignore Defense (pc of physical damage)
+    PIERCE         //Ignore Defense (pc of physical damage)     //3
 }
 public enum AilmentType
 {
-    NONE,       //0
+    NONE,                                                        //0
     BURN,
     FREEZE,
     STUN,
     POISON,
-    BLEED       //5
+    BLEED                                                        //5
 }
 
 public enum StatType
 {
-    NONE,
+    NONE,                                                       //0
     STRENGTH,
     VITALITY,
     DEXTERITY,
     INTELLIGENCE,
-    LUCK
+    LUCK                                                        //5
 }
 
 public enum WeaponType
 {
-    SWORD,              //0
+    SWORD,                                                      //0
     AXE,
     SPEAR,
     MACE,
@@ -51,24 +51,24 @@ public enum WeaponType
     BOW,
     SCEPTER,
     STAFF,
-    TOME                //9
+    TOME                                                        //9
 }
 
 public enum ArmorType
 {
-    HELMET,            //0
+    HELMET,                                                     //0
     SHOULDER,
     CHESTARMOR,
     PANTS,
     BOOTS,
     GLOVES,
     BELT,
-    SHIELD            //7
+    SHIELD                                                      //7
 }
 
 public enum MaterialType
 {
-    COTON,
+    COTON,                                                      //0
     LEATHER,
     BRONZE,
     SILVER,
@@ -76,12 +76,12 @@ public enum MaterialType
     PLATINUM,
     ORIHALCON,
     MITRHIL,
-    ADAMANTIUM
+    ADAMANTIUM                                                  //8
 }
 
 public enum ResistanceType
 {
-    NONE,
+    NONE,                                                       //0
     PHYSICAL,
     FIRE,
     ICE,
@@ -92,5 +92,5 @@ public enum ResistanceType
     PIERCE,
     BLUNT,
     ELEMENTAL,
-    AILMENT
+    AILMENT                                                     //11
 }
