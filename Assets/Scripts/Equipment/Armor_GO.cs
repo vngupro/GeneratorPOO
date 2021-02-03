@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class Armor_GO : MonoBehaviour
 {
-    Armor armor;
+    public Armor armor;
+    [SerializeField] private List<Sprite> sprites = new List<Sprite>();
+
+    Sprite sprite;
+
+    private void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>().sprite;    
+    }
 }
