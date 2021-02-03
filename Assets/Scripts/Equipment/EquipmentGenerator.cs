@@ -11,6 +11,7 @@ public class EquipmentGenerator : MonoBehaviour
 
     [SerializeField] Weapon_GO weaponRef;
     [SerializeField] Armor_GO armorRef;
+
     public void GenerateEquipment()
     {
         for(int i = 0; i < 3; i++)
