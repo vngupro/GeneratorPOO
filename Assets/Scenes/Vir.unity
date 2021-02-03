@@ -153,8 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0e594dbab798e41aaaf80e9fc6c788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRef: {fileID: 1329497188738971706, guid: 82ef3069bf8b8fe43853cd887fe1a4e0, type: 3}
-  armorRef: {fileID: 979845101079216673, guid: 98eeb1dbb33f84d448fe5f574db5b609, type: 3}
 --- !u!114 &136462753
 MonoBehaviour:
   m_ObjectHideFlags: 0

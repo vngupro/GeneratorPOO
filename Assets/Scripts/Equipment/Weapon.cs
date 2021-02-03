@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class Weapon : Equipment
 {
-    //Variable
-    int _minDamage = 0;
-    int _maxDamage = 0;
-    float _atkPerSec = .0f;
-    bool _isTwoHanded = false;
-    float _criticalChance = .0f;
-    float _criticalDamage = .0f;
-    WeaponType _weaponType;
-    List<Ailment> ailmentList = new List<Ailment>();
-    List<Attribute> attributeList = new List<Attribute>();
-    List<SubDamage> subDamageList = new List<SubDamage>();
+    //Properties
+    public int MinDamage { get; private set; }  = 0;
+    public int MaxDamage { get; private set; } = 0;
+    public float AtkPerSec { get; private set; } = .0f;
+    public bool IsTwoHanded { get; private set; } = false;
+    public float CriticalChance { get; private set; } = .0f;
+    public float CriticalDamage { get; private set; } = .0f;
+    public WeaponType WeaponType { get; private set; } = WeaponType.Sword;
+
+    //Lists
+    public List<Ailment> ailmentList = new List<Ailment>();
+    public List<Attribute> attributeList = new List<Attribute>();
+    public List<SubDamage> subDamageList = new List<SubDamage>();
 
     //Constructor
     public Weapon()
     {
-        _minDamage = Random.Range(1, 998);
+        MinDamage = Random.Range(1, 998);
         do
         {
-            _maxDamage = Random.Range(2, 999);
-        } while (_maxDamage < _minDamage);
+            MaxDamage = Random.Range(2, 999);
+        } while (MaxDamage < MinDamage);
 
-        _atkPerSec = Random.Range(0.5f, 2.5f);
+        AtkPerSec = Random.Range(0.5f, 2.5f);
         int rngTwoHanded = Random.Range(0, 99);
-        _isTwoHanded = (rngTwoHanded < 50) ? true : false;
-        _criticalChance = Random.Range(0.0f, 100.0f);
-        _criticalDamage = Random.Range(10.0f, 200.0f);
+        IsTwoHanded = (rngTwoHanded < 50) ? true : false;
+        CriticalChance = Random.Range(0.0f, 100.0f);
+        CriticalDamage = Random.Range(10.0f, 200.0f);
         int rngDamageType = Random.Range(0, 99);
-        _weaponType = (WeaponType)(Random.Range(0, 9));
+        WeaponType = (WeaponType)(Random.Range(0, 9));
 
         do
         {
@@ -47,13 +49,13 @@ public class Weapon : Equipment
         {
             subDamageList.Add(CreateSubDamage());
         } while (subDamageList[subDamageList.Count - 1].subDamageType != SubDamageType.NONE);
-        _name = EquipementNameGenerator();
+        Name = EquipementNameGenerator();
     }
 
     //Method
     public override string EquipementNameGenerator()
     {
-        string nameGenerate = rarity.ToString() + " " + materialType.ToString() + " " + _weaponType.ToString();
+        string nameGenerate = rarity.ToString() + " " + materialType.ToString() + " " + WeaponType.ToString();
         return nameGenerate;
     }
 

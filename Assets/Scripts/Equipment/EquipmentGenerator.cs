@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class EquipmentGenerator : MonoBehaviour
 {
-    [SerializeField] private List<Armor> armorList = new List<Armor>();
-    [SerializeField] private List<Weapon> weaponList = new List<Weapon>();
+    public List<Equipment> equipmentList = new List<Equipment>();
+
     private int rng = 0;
     private int previousRng = 0;
 
-    [SerializeField] Weapon_GO weaponRef;
-    [SerializeField] Armor_GO armorRef;
+    /*     
+     *   * Equipement_UI -> recuperer List<Equipment>
+         * Sprite pool 
+         * private override -> recuperer les valeurs de variables
+         * Unity Events -> automatic
+    */
 
     public void GenerateEquipment()
     {
@@ -21,26 +25,21 @@ public class EquipmentGenerator : MonoBehaviour
 
             if (rng < 50)
             {
-                weaponList.Add(new Weapon());
-                weaponRef.weapon = weaponList[weaponList.Count - 1];
-                Instantiate(weaponRef);
-                Debug.Log("Weapon Generate");
-                Debug.Log(weaponRef.weapon._name);
+                equipmentList.Add(new Weapon());
+                Debug.Log(equipmentList[equipmentList.Count - 1].Name);
             }
             else
             {
-                armorList.Add(new Armor());
-                armorRef.armor = armorList[armorList.Count - 1];
-                Instantiate(armorRef);
-                Debug.Log("Armor Generate");
-                Debug.Log(armorRef.armor._name);
+                equipmentList.Add(new Armor());
+                Debug.Log(equipmentList[equipmentList.Count - 1].Name);
             }
 
+            GameEvents.EquipmentGenerated.Invoke();
             previousRng = rng;
         }
     }
 
-    public void NotTwiceTheSame(int i, int rng, int previousRng)
+    public static void NotTwiceTheSame(int i, int rng, int previousRng)
     {
         if (i == 1)
         {
@@ -54,4 +53,27 @@ public class EquipmentGenerator : MonoBehaviour
             }
         }
     }
+
+
+    /* Inventory Class Monobehavior
+     * -> List<InventorySlot> slots;
+     * 
+     * InventorySlot -> Monobehavior
+     * Item -> No monobehavior
+     * ItemWorld -> Monobehavior pour apparaitre dans le game
+     * 
+     * Item -> Ressources
+     *      -> Equipments
+     * Ressouces ou Equipements pas hériter de Item
+     * Tu peux pas les mettres dans InventorySlots 
+     * 
+     * InventorySlot = 1 slot 
+     *  -> Equipemnt = nullptr;
+     *  -> Ressouces = nullptr;
+     *  selon les trucs generer -> Equipmenet = generate equipment
+     *                          -> Ressource = genereate ressource
+     *                          l'un ou l'autre mais jamais les 2 (XOR)
+     *                           
+     *  
+     */
 }
