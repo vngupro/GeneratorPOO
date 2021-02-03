@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class Equipment
 {
-    //Variable 
-    public string _name = "";
-    int _maxDurability = 0;
-    int _level = 0;
-    int _playerLevelRequire = 0;
-    StatType _statRequire = StatType.NONE;
-    int _statValueRequire = 0;
-    int durability = 0;
-    public MaterialType materialType;
-    public RarityType rarity;
+    //Properties
+    public string Name { get; protected set; } = "";
+    public StatType StatRequire { get; protected set; } = StatType.NONE;
+
+    public int MaxDurability { get; private set; } = 0;
+    public int Level { get; private set; } = 0;
+    public int PlayerLevelRequire { get; private set; } = 0;
+    public int StatValueRequire { get; private set; } = 0;
+    public MaterialType materialType { get; private set; } = MaterialType.Bronze;
+    public RarityType rarity { get; private set; } = RarityType.Broken;
+
+    //Variable
+    public int durability = 0;
 
     //Constructor
     public Equipment()
     {
-        _maxDurability = Random.Range(100, 999);
-        _level = Random.Range(1, 99);
-        _playerLevelRequire = Random.Range(1, 99);
-        _statRequire = StatRequire();
-        if(_statRequire != StatType.NONE)
+        MaxDurability = Random.Range(100, 999);
+        Level = Random.Range(1, 99);
+        PlayerLevelRequire = Random.Range(1, 99);
+        StatRequire = GetStatRequire();
+        if(StatRequire != StatType.NONE)
         {
-            _statValueRequire = Random.Range(0, 99);
+            StatValueRequire = Random.Range(1, 99);
         }
-        durability = _maxDurability;
+        durability = MaxDurability;
         materialType = (MaterialType)(Random.Range(0, 6));
         rarity = (RarityType)(Random.Range(0, 5));   
     }
@@ -38,7 +41,7 @@ public class Equipment
         return nameGenerate;
     }
 
-    public StatType StatRequire()
+    public static StatType GetStatRequire()
     {
         StatType statType;
         int rngStatRequire = Random.Range(0, 5 * 3);

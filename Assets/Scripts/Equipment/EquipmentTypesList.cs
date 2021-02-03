@@ -89,7 +89,7 @@ public enum ResistanceType
     SLASH,
     PIERCE,
     BLUNT,
-    ELEMENTAL,
+    ATTRIBUTE,
     AILMENT                                                     //11
 }
 
