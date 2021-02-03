@@ -21,19 +21,21 @@ public class Weapon : Equipment
     //Constructor
     public Weapon()
     {
-        MinDamage = Random.Range(1, 998);
+        this.itemType = ItemTypes.WEAPON;
+
+        this.MinDamage = Random.Range(1, 998);
         do
         {
-            MaxDamage = Random.Range(2, 999);
-        } while (MaxDamage < MinDamage);
+            this.MaxDamage = Random.Range(2, 999);
+        } while (this.MaxDamage < this.MinDamage);
 
-        AtkPerSec = Random.Range(0.5f, 2.5f);
+        this.AtkPerSec = Random.Range(0.5f, 2.5f);
         int rngTwoHanded = Random.Range(0, 99);
-        IsTwoHanded = (rngTwoHanded < 50) ? true : false;
-        CriticalChance = Random.Range(0.0f, 100.0f);
-        CriticalDamage = Random.Range(10.0f, 200.0f);
+        this.IsTwoHanded = (rngTwoHanded < 50) ? true : false;
+        this.CriticalChance = Random.Range(0.0f, 100.0f);
+        this.CriticalDamage = Random.Range(10.0f, 200.0f);
         int rngDamageType = Random.Range(0, 99);
-        WeaponType = (WeaponType)(Random.Range(0, 9));
+        this.WeaponType = (WeaponType)(Random.Range(0, 9));
 
         do
         {
@@ -49,7 +51,8 @@ public class Weapon : Equipment
         {
             subDamageList.Add(CreateSubDamage());
         } while (subDamageList[subDamageList.Count - 1].subDamageType != SubDamageType.NONE);
-        Name = EquipementNameGenerator();
+
+        this.Name = EquipementNameGenerator();
     }
 
     //Method

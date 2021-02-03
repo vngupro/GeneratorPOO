@@ -5,6 +5,10 @@ using UnityEngine.Events;
 
 public static class GameEvents
 {
-    public static UnityEvent RessourceGenerated = new UnityEvent();
-    public static UnityEvent EquipmentGenerated = new UnityEvent();
+    public static ActionEvent RessourceGenerated = new ActionEvent();
+    public static ActionEvent EquipmentGenerated = new ActionEvent();
+    public static ActionEvent PickedUpItem = new ActionEvent();
+    public static ActionEvent PutDownItem = new ActionEvent();
+    public static ActionEvent HoverOnItem = new ActionEvent();
 }
+public class ActionEvent : UnityEvent<Item> { }

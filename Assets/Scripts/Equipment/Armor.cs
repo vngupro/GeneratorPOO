@@ -14,9 +14,11 @@ public class Armor : Equipment
     //Constructor
     public Armor()
     {
-        Value = Random.Range(1, 999);
-        ArmorType armorType = (ArmorType)(Random.Range(0, 8));
-        Name = EquipementNameGenerator();
+        this.itemType = ItemTypes.ARMOR;
+
+        this.Value = Random.Range(1, 999);
+        this.ArmorType = (ArmorType)(Random.Range(0, 8));
+        this.Name = EquipementNameGenerator();
     }
 
     //Method
