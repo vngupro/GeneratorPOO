@@ -254,8 +254,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 7167554234833043057, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
   inventory_ui: {fileID: 467019438}
   startPos: {fileID: 570918989}
-  xDistance: 160
-  yDistance: 160
+  xDistance: 120
+  yDistance: 140
 --- !u!4 &320797150
 Transform:
   m_ObjectHideFlags: 0
