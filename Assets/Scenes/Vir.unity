@@ -625,11 +625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5940521434794835478, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 5940521434794835478, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 5940521434794835478, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -683,6 +683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot
       objectReference: {fileID: 0}
+    - target: {fileID: 5940521434794835479, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
 --- !u!224 &1256279425 stripped
@@ -734,7 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429f687fd77a16d41b643932756470a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotPrefab: {fileID: 298662408, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
+  slotPrefab: {fileID: 7167554234833043057, guid: 96e66e9e5a59fae4e8b747a0ad6373f2, type: 3}
   inventory_ui: {fileID: 946733393}
 --- !u!114 &1290609821
 MonoBehaviour:

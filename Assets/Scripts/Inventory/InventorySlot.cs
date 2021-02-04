@@ -5,4 +5,9 @@ using UnityEngine;
 public class InventorySlot : MonoBehaviour
 {
     public Item item = null;
+
+    private void Start()
+    {
+        item = new Item();
+    }
 }

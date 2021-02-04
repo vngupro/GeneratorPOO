@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {                                                   
-    private List<InventorySlot> slots = new List<InventorySlot>();
+    private List<Item> itemList = new List<Item>();
     [SerializeField] private InventorySlot slotPrefab;
     [SerializeField] GameObject inventory_ui;
     private void Awake()
@@ -15,12 +15,12 @@ public class Inventory : MonoBehaviour
     }
     public void AddItem(Item newItem)
     {
-        InventorySlot slot = new InventorySlot();
-        slot.item = newItem;
-        slots.Add(slot);
+        InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
+        newSlot.transform.SetParent(inventory_ui.transform);
+        newSlot.item = newItem;
+        itemList.Add(newItem);
         Debug.Log("add item");
-        slot = Instantiate(slotPrefab, inventory_ui.transform);
-        slot.transform.parent = inventory_ui.transform;
+
         RefreshInventoryItems();
     }
 
@@ -49,22 +49,22 @@ public class Inventory : MonoBehaviour
 
     public void ShowInfo()
     {
-        InventorySlot slot = slots[slots.Count - 1];
-        switch (slot.item.itemType)
+        Item item = itemList[itemList.Count - 1];
+        switch (item.itemType)
         {
             case ItemTypes.ARMOR:
-                Armor armor = (Armor)slot.item;
+                Armor armor = (Armor)item;
                 Debug.Log("Armor def value" + armor.Value);
                 break;
             case ItemTypes.WEAPON:
-                Weapon weapon = (Weapon)slot.item;
+                Weapon weapon = (Weapon)item;
                 Debug.Log("Weapon Max Value" + weapon.MaxDamage);
                 break;
             case ItemTypes.BONUS:
-                //Bonus bonus = (Bonus)slot.item;
+                //Bonus bonus = (Bonus)item;
                 break;
             case ItemTypes.MALUS:
-                //Malus malus = (Malus)slot.item;
+                //Malus malus = (Malus)item;
                 break;
             default:
                 break;
