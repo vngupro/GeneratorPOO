@@ -32,35 +32,9 @@ public class Inventory : MonoBehaviour
             }
             newSlot.transform.position = new Vector2(startPos.transform.position.x + ((itemList.Count-1) % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
             newSlot.item = newItem;
-            
+            newSlot.transform.GetChild(newSlot.transform.childCount - 1).GetComponent<Image>().sprite = newItem.GetSprite();
             Debug.Log(newSlot.item.Name);
         }
-
-        
-        //RefreshInventoryItems();
-    }
-
-    private void RefreshInventoryItems()
-    {
-
-        //int x = 0;
-        //int y = 0;
-        //float itemSlotCellSize = 26.0f;
-
-        //foreach (InventorySlot slot in slots)
-        //{
-        //    RectTransform slotRectTransform = Instantiate(slotTemplate, slotContainer).GetComponent<RectTransform>();
-        //    slotRectTransform.gameObject.SetActive(true);
-        //    slotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
-        //    Image image = slotRectTransform.Find("image").GetComponent<Image>();
-        //    image.sprite = slot.item.GetSprite();
-        //    x++;
-        //    if (x > 20)
-        //    {
-        //        x = 0;
-        //        y++;
-        //    }
-        //}
     }
 
     public void ShowInfo()
