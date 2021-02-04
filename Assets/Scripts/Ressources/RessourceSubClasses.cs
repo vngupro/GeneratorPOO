@@ -6,10 +6,10 @@ class Bonus : Ressource
 {
     public BonusEffect BEffect { get; set; }
     public string Attribut = "Bonus";
-    public override void AfficherInfos()
+    public override void DisplayStats()
     {
-        Debug.Log("Ressource " + name);
-        base.AfficherInfos();
+        Debug.Log("Ressource " + name + "Effect : "+ BEffect.ToString());
+        base.DisplayStats();
     }
     public Bonus(string _name) : base(_name)
     {
@@ -22,10 +22,10 @@ class Malus : Ressource
 {
     public MalusEffect MEffect { get; set; }
     public string Attribut = "Malus";
-    public override void AfficherInfos()
+    public override void DisplayStats()
     {
-        Debug.Log("Ressource " + name);
-        base.AfficherInfos();
+        Debug.Log("Ressource " + name + "Effect : " + MEffect.ToString());
+        base.DisplayStats();
     }
     public Malus(string _name) : base(_name)
     {

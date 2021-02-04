@@ -18,10 +18,12 @@ public class RessourceGenerator : MonoBehaviour
             {
                 case 0:
                     RessourceList.Add(new Malus("Malus"));
+                    RessourceList[RessourceList.Count - 1].DisplayStats();
                     break;
 
                 case 1:
                     RessourceList.Add(new Bonus("Bonus"));
+                    RessourceList[RessourceList.Count - 1].DisplayStats();
                     break;
             }
             GameEvents.RessourceGenerated.Invoke(RessourceList[RessourceList.Count - 1]);
