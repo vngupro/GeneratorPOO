@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {                                                   
-    private List<Item> itemList = new List<Item>();
+    public List<Item> itemList = new List<Item>();
     [SerializeField] private InventorySlot slotPrefab;
     [SerializeField] GameObject inventory_ui;
     [SerializeField] GameObject startPos;

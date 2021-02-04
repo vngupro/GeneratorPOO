@@ -20,6 +20,7 @@ public class Armor : Equipment
         this.ArmorType = (ArmorType)(Random.Range(0, 8));
         this.Name = EquipementNameGenerator();
     }
+    
 
     //Method
     public override string EquipementNameGenerator()

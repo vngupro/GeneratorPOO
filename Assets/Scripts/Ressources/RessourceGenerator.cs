@@ -26,6 +26,7 @@ public class RessourceGenerator : MonoBehaviour
                     RessourceList[RessourceList.Count - 1].DisplayStats();
                     break;
             }
+            Debug.Log(RessourceList[RessourceList.Count - 1].GetType());
             GameEvents.RessourceGenerated.Invoke(RessourceList[RessourceList.Count - 1]);
         }
         

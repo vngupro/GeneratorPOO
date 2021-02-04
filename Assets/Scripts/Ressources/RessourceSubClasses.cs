@@ -16,6 +16,10 @@ class Bonus : Ressource
         name = _name;
         BEffect = (BonusEffect)(Random.Range(0, 4));
     }
+    public override Sprite GetSprite()
+    {
+        return ItemAssets.Instance.axeSprite;
+    }
 }
 
 class Malus : Ressource
@@ -31,5 +35,9 @@ class Malus : Ressource
     {
         name = _name;
         MEffect = (MalusEffect)(Random.Range(0,4));
+    }
+    public override Sprite GetSprite()
+    {
+        return ItemAssets.Instance.daggersSprite;
     }
 }
