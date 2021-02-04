@@ -19,14 +19,13 @@ public class EquipmentGenerator : MonoBehaviour
             if (rng < 50)
             {
                 equipmentList.Add(new Weapon());
-                //Debug.Log(equipmentList[equipmentList.Count - 1].Name);
             }
             else
             {
                 equipmentList.Add(new Armor());
-                //Debug.Log(equipmentList[equipmentList.Count - 1].Name);
             }
 
+            //Listener | Inventory.cs
             GameEvents.EquipmentGenerated.Invoke(equipmentList[equipmentList.Count -1]);
             previousRng = rng;
         }

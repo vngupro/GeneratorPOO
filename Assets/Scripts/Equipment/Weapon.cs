@@ -62,6 +62,24 @@ public class Weapon : Equipment
         return nameGenerate;
     }
 
+    public override Sprite GetSprite()
+    {
+        switch (WeaponType)
+        {
+            case WeaponType.Axe:        return ItemAssets.Instance.axeSprite;
+            case WeaponType.Bow:        return ItemAssets.Instance.bowSprite;
+            case WeaponType.Daggers:    return ItemAssets.Instance.daggersSprite;
+            case WeaponType.Hammer:     return ItemAssets.Instance.hammerSprite;
+            case WeaponType.Mace:       return ItemAssets.Instance.maceSprite;
+            case WeaponType.Scepter:    return ItemAssets.Instance.scepterSprite;
+            case WeaponType.Spear:      return ItemAssets.Instance.spearSprite;
+            case WeaponType.Staff:      return ItemAssets.Instance.staffSprite;
+            case WeaponType.Sword:      return ItemAssets.Instance.swordSprite;
+            case WeaponType.Tome:       return ItemAssets.Instance.tomeSprite;
+        }
+        return ItemAssets.Instance.defaultSprite;
+    }
+
     public Ailment CreateAilment()
     {
         Ailment ailment = new Ailment();

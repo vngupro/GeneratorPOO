@@ -58,13 +58,14 @@ public enum WeaponType
 public enum ArmorType
 {
     Helmet,                                                     //0
-    ShoulderPad,
+    Shoulder,
     Plastron,
     Pants,
     Boots,
     Gloves,
     Belt,
-    Shield                                                      //7
+    Cape,
+    Shield                                                      //8
 }
 
 public enum MaterialType

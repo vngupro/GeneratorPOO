@@ -12,5 +12,10 @@ public class Item
         string nameGenerate = "Random Equipment";
         return nameGenerate;
     }
+
+    public virtual Sprite GetSprite()
+    {
+        return ItemAssets.Instance.defaultSprite;
+    }
 }
 

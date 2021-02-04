@@ -1,22 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
-{
-    [Header("DEBUG")]
-    [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
+{                                                   
+    private List<InventorySlot> slots = new List<InventorySlot>();
+    [SerializeField] private InventorySlot slotPrefab;
+    [SerializeField] GameObject inventory_ui;
     private void Awake()
     {
+        //Invoke | Equipment Generator
         GameEvents.EquipmentGenerated.AddListener(AddItem);
-        GameEvents.RessourceGenerated.AddListener(AddItem);
     }
-
     public void AddItem(Item newItem)
     {
         InventorySlot slot = new InventorySlot();
         slot.item = newItem;
         slots.Add(slot);
+        Debug.Log("add item");
+        slot = Instantiate(slotPrefab, inventory_ui.transform);
+        slot.transform.parent = inventory_ui.transform;
+        RefreshInventoryItems();
+    }
+
+    private void RefreshInventoryItems()
+    {
+
+        //int x = 0;
+        //int y = 0;
+        //float itemSlotCellSize = 26.0f;
+
+        //foreach (InventorySlot slot in slots)
+        //{
+        //    RectTransform slotRectTransform = Instantiate(slotTemplate, slotContainer).GetComponent<RectTransform>();
+        //    slotRectTransform.gameObject.SetActive(true);
+        //    slotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+        //    Image image = slotRectTransform.Find("image").GetComponent<Image>();
+        //    image.sprite = slot.item.GetSprite();
+        //    x++;
+        //    if (x > 20)
+        //    {
+        //        x = 0;
+        //        y++;
+        //    }
+        //}
     }
 
     public void ShowInfo()
@@ -42,4 +70,5 @@ public class Inventory : MonoBehaviour
                 break;
         }
     }
+
 }
