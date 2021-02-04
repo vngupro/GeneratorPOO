@@ -8,20 +8,35 @@ public class Inventory : MonoBehaviour
     private List<Item> itemList = new List<Item>();
     [SerializeField] private InventorySlot slotPrefab;
     [SerializeField] GameObject inventory_ui;
-    private void Awake()
-    {
-        //Invoke | Equipment Generator
+    [SerializeField] GameObject startPos;
+    [SerializeField] private int xDistance = 160;                  //distance between two slots
+    [SerializeField] private int yDistance = 160;
+    private int yIndex = -1;
+
+    private void Awake() {
+    
+        //Invoke | EquipmentGenerator.cs
         GameEvents.EquipmentGenerated.AddListener(AddItem);
+        GameEvents.RessourceGenerated.AddListener(AddItem);
     }
     public void AddItem(Item newItem)
     {
-        InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
-        newSlot.transform.SetParent(inventory_ui.transform);
-        newSlot.item = newItem;
-        itemList.Add(newItem);
-        Debug.Log("add item");
+        if(itemList.Count != 15 * 6)
+        {
+            InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
+            newSlot.transform.SetParent(inventory_ui.transform);
+            if (itemList.Count % 15 == 0)
+            {
+                yIndex++;
+            }
+            newSlot.transform.position = new Vector2(startPos.transform.position.x + (itemList.Count % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
+            newSlot.item = newItem;
+            itemList.Add(newItem);
+            Debug.Log(newSlot.item.Name);
+        }
 
-        RefreshInventoryItems();
+        
+        //RefreshInventoryItems();
     }
 
     private void RefreshInventoryItems()
