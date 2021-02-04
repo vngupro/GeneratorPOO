@@ -23,25 +23,27 @@ public class Inventory : MonoBehaviour
     {
         if(itemList.Count != 15 * 6)
         {
-            //add new item to list
             itemList.Add(newItem);
-
-            //show item in inventory ui
-            InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
-            newSlot.item = newItem;
-            newSlot.transform.GetChild(newSlot.transform.childCount - 1).GetComponent<Image>().sprite = newItem.GetSprite();
-            newSlot.transform.SetParent(inventory_ui.transform);
-
-            //change row
-            if ((itemList.Count-1) % 15 == 0)
-            {
-                yIndex++;
-            }
-
-            //set position
-            newSlot.transform.position = new Vector2(startPos.transform.position.x + ((itemList.Count-1) % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
-
+            AddItemUI(newItem);
         }
+    }
+
+    public void AddItemUI(Item newItem)
+    {
+        //show item in inventory ui
+        InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
+        newSlot.item = newItem;
+        newSlot.transform.GetChild(newSlot.transform.childCount - 1).GetComponent<Image>().sprite = newItem.GetSprite();
+        newSlot.transform.SetParent(inventory_ui.transform);
+
+        //change row
+        if ((itemList.Count - 1) % 15 == 0)
+        {
+            yIndex++;
+        }
+
+        //set position
+        newSlot.transform.position = new Vector2(startPos.transform.position.x + ((itemList.Count - 1) % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
     }
 
     public void ShowInfo()
