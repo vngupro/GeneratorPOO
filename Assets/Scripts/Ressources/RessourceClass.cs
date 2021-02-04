@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Ressource
+class Ressource : Item
 {
     public string name {get; set;}
     public RarityType rarity { get; set; }
@@ -19,7 +19,6 @@ class Ressource
     public Ressource()
     {
         name = "Ressource";
-       
     }
 }
 
