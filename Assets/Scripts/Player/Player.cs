@@ -7,14 +7,13 @@ public class Player : MonoBehaviour
     private GameObject itemInHand = null;                       //GameObject inside player hand
     private Vector2 mousePos = new Vector2(0, 0);               //Mouse Position in World Space
     private bool hasItemInHand = false;                         //Check if player got an item in hand
-
     private void Awake()
     {
         //Initialize
         itemInHand = null; 
         mousePos = new Vector2(0, 0);
         hasItemInHand = false;
-
+        //inventory = GetComponentInChildren<Inventory>();
         //Invoke in 
         GameEvents.PutDownItem.AddListener(RemoveItemInHand);
         
