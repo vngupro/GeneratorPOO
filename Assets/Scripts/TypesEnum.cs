@@ -11,7 +11,6 @@ public enum AttributeType
     LIGHTNING,
     POISON,
     ACID                                                         //5
-
 }
 
 public enum SubDamageType
@@ -73,9 +72,9 @@ public enum MaterialType
     Bronze,                                                     //0
     Silver,
     Gold,
-    Platinium,
-    Orihalcon,
+    Platinum,
     Mithril,
+    Orihalcon,
     Adamantium                                                  //6
 }
 
@@ -83,6 +82,8 @@ public enum ResistanceType
 {
     NONE,                                                       //0
     PHYSICAL,
+    ATTRIBUTE,
+    AILMENT,
     FIRE,
     ICE,
     LIGHTNING,
@@ -90,9 +91,7 @@ public enum ResistanceType
     ACID,
     SLASH,
     PIERCE,
-    BLUNT,
-    ATTRIBUTE,
-    AILMENT                                                     //11
+    BLUNT                                                      //11
 }
 
 public enum RarityType

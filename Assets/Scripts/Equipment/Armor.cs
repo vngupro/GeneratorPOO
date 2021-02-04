@@ -4,30 +4,42 @@ using UnityEngine;
 
 public class Armor : Equipment
 {
-    //Properties
+    #region Variable
     public int Value { get; private set; } = 0;
     public ArmorType ArmorType { get; private set; } = ArmorType.Shield;
-    
-    //Lists
+    #endregion
+    #region Lists
     public List<Resistance> resistanceList = new List<Resistance>();
-
-    //Constructor
+    #endregion
+    #region Constructor
     public Armor()
     {
         this.itemType = ItemTypes.ARMOR;
-
-        this.Value = Random.Range(1, 999);
+        this.Value = InitValue();
         this.ArmorType = (ArmorType)(Random.Range(0, 8));
         this.Name = EquipementNameGenerator();
     }
-
-    //Method
+    #endregion
+    #region Method
+    private int InitValue()
+    {
+        switch (this.MaterialName)
+        {
+            case MaterialType.Bronze:       return Random.Range(1, 100);
+            case MaterialType.Silver:       return Random.Range(75, 200);
+            case MaterialType.Gold:         return Random.Range(150, 300);
+            case MaterialType.Platinum:     return Random.Range(250, 400);
+            case MaterialType.Mithril:      return Random.Range(300, 500);
+            case MaterialType.Orihalcon:    return Random.Range(400, 600);
+            case MaterialType.Adamantium:   return Random.Range(500, 999);
+        }
+        return 0;
+    }
     public override string EquipementNameGenerator()
     {
-        string nameGenerate = rarity.ToString() + " " + materialType.ToString() + " " + ArmorType.ToString();
+        string nameGenerate = Rarity.ToString() + " " + MaterialName.ToString() + " " + ArmorType.ToString();
         return nameGenerate;
     }
-
     public override Sprite GetSprite()
     {
         switch (ArmorType)
@@ -43,4 +55,5 @@ public class Armor : Equipment
         }
         return ItemAssets.Instance.defaultSprite;
     }
+    #endregion
 }

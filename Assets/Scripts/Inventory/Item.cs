@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item
 {
     public string Name { get; protected set; } = "";
-    public ItemTypes itemType { get; set; } = ItemTypes.NONE;
+    public ItemTypes itemType = ItemTypes.NONE;
     
     public virtual string EquipementNameGenerator()
     {

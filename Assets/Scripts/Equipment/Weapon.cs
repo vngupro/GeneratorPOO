@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Weapon : Equipment
 {
-    //Properties
+    #region Variable
     public int MinDamage { get; private set; }  = 0;
-    public int MaxDamage { get; private set; } = 0;
+    public int MaxDamage { get; private set; } = 0;                                                 
     public float AtkPerSec { get; private set; } = .0f;
     public bool IsTwoHanded { get; private set; } = false;
     public float CriticalChance { get; private set; } = .0f;
     public float CriticalDamage { get; private set; } = .0f;
     public WeaponType WeaponType { get; private set; } = WeaponType.Sword;
-
-    //Lists
+    #endregion
+    #region Lists
     public List<Ailment> ailmentList = new List<Ailment>();
     public List<Attribute> attributeList = new List<Attribute>();
     public List<SubDamage> subDamageList = new List<SubDamage>();
-
-    //Constructor
+    #endregion
+    #region Construtor
     public Weapon()
     {
         this.itemType = ItemTypes.WEAPON;
@@ -54,11 +54,69 @@ public class Weapon : Equipment
 
         this.Name = EquipementNameGenerator();
     }
+    #endregion
+    #region Method
+    public Ailment CreateAilment()
+    {
+        Ailment ailment = new Ailment();
+        bool alreadyHave;
+        do
+        {
+            alreadyHave = false;
+            foreach (Ailment element in ailmentList)
+            {
+                if (ailment.ailmentType == element.ailmentType)
+                {
+                    alreadyHave = true;
+                    ailment = new Ailment();
+                }
+            }
+        } while (alreadyHave);
 
-    //Method
+        return ailment;
+    }
+    public Attribute CreateAttribute()
+    {
+        Attribute attribute = new Attribute();
+        bool alreadyHave;
+        do
+        {
+            alreadyHave = false;
+            foreach (Attribute element in attributeList)
+            {
+                if (attribute.attributeType == element.attributeType)
+                {
+                    alreadyHave = true;
+                    attribute = new Attribute();
+                }
+            }
+        } while (alreadyHave);
+
+        return attribute;
+    }
+    public SubDamage CreateSubDamage()
+    {
+        SubDamage subDamage = new SubDamage();
+        bool alreadyHave;
+        do
+        {
+            alreadyHave = false;
+            foreach (SubDamage element in subDamageList)
+            {
+                if (subDamage.subDamageType == element.subDamageType)
+                {
+                    alreadyHave = true;
+                    subDamage = new SubDamage();
+                }
+            }
+        } while (alreadyHave);
+
+        return subDamage;
+    }
+    #region Overriding
     public override string EquipementNameGenerator()
     {
-        string nameGenerate = rarity.ToString() + " " + materialType.ToString() + " " + WeaponType.ToString();
+        string nameGenerate = Rarity.ToString() + " " + MaterialName.ToString() + " " + WeaponType.ToString();
         return nameGenerate;
     }
 
@@ -79,64 +137,6 @@ public class Weapon : Equipment
         }
         return ItemAssets.Instance.defaultSprite;
     }
-
-    public Ailment CreateAilment()
-    {
-        Ailment ailment = new Ailment();
-        bool alreadyHave;
-        do
-        {
-            alreadyHave = false;
-            foreach (Ailment element in ailmentList)
-            {
-                if (ailment.ailmentType == element.ailmentType)
-                {
-                    alreadyHave = true;
-                    ailment = new Ailment();
-                }
-            }
-        } while (alreadyHave);
-
-        return ailment;
-    }
-
-    public Attribute CreateAttribute()
-    {
-        Attribute attribute = new Attribute();
-        bool alreadyHave;
-        do
-        {
-            alreadyHave = false;
-            foreach (Attribute element in attributeList)
-            {
-                if (attribute.attributeType == element.attributeType)
-                {
-                    alreadyHave = true;
-                    attribute = new Attribute();
-                }
-            }
-        } while (alreadyHave);
-
-        return attribute;
-    }
-
-    public SubDamage CreateSubDamage()
-    {
-        SubDamage subDamage = new SubDamage();
-        bool alreadyHave;
-        do
-        {
-            alreadyHave = false;
-            foreach (SubDamage element in subDamageList)
-            {
-                if (subDamage.subDamageType == element.subDamageType)
-                {
-                    alreadyHave = true;
-                    subDamage = new SubDamage();
-                }
-            }
-        } while (alreadyHave);
-
-        return subDamage;
-    }
+    #endregion
+    #endregion
 }
