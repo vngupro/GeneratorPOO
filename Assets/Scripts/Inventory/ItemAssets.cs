@@ -35,4 +35,7 @@ public class ItemAssets : MonoBehaviour
     public Sprite bootsSprite;
     public Sprite shieldSprite;
     public Sprite capeSprite;
+
+    public Sprite Good;
+    public Sprite Bad;
 }

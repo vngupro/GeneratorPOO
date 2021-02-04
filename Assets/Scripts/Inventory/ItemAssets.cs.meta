@@ -3,7 +3,29 @@ guid: 2099b77845e24d943a851b2e63ebc9b4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - defaultSprite: {instanceID: 0}
+  - swordSprite: {instanceID: 0}
+  - axeSprite: {instanceID: 0}
+  - spearSprite: {instanceID: 0}
+  - maceSprite: {instanceID: 0}
+  - hammerSprite: {instanceID: 0}
+  - daggersSprite: {instanceID: 0}
+  - bowSprite: {instanceID: 0}
+  - scepterSprite: {instanceID: 0}
+  - staffSprite: {instanceID: 0}
+  - tomeSprite: {instanceID: 0}
+  - helmetSprite: {instanceID: 0}
+  - shoulderSprite: {instanceID: 0}
+  - plastronSprite: {instanceID: 0}
+  - beltSprite: {instanceID: 0}
+  - glovesSprite: {instanceID: 0}
+  - pantsSprite: {instanceID: 0}
+  - bootsSprite: {instanceID: 0}
+  - shieldSprite: {instanceID: 0}
+  - capeSprite: {instanceID: 0}
+  - Good: {fileID: 2962253915276600983, guid: fef44bb71802e0e43b1d827988238712, type: 3}
+  - Bad: {fileID: -745129881786663193, guid: fef44bb71802e0e43b1d827988238712, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

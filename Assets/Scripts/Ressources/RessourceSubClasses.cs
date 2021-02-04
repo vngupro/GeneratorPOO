@@ -20,7 +20,7 @@ class Bonus : Ressource
     }
     public override Sprite GetSprite()
     {
-        return ItemAssets.Instance.axeSprite;
+        return ItemAssets.Instance.Good;
     }
 }
 
@@ -41,6 +41,6 @@ class Malus : Ressource
     }
     public override Sprite GetSprite()
     {
-        return ItemAssets.Instance.daggersSprite;
+        return ItemAssets.Instance.Bad;
     }
 }

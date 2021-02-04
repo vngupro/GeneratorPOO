@@ -239,6 +239,8 @@ MonoBehaviour:
   bootsSprite: {fileID: 5480169120079208373, guid: fef44bb71802e0e43b1d827988238712, type: 3}
   shieldSprite: {fileID: -5929452138757002481, guid: a12be17eea689f4419561e900adb9442, type: 3}
   capeSprite: {fileID: -2081598026690706218, guid: 25b685a1e5456d04b8aab20d6cca2625, type: 3}
+  Good: {fileID: 2962253915276600983, guid: fef44bb71802e0e43b1d827988238712, type: 3}
+  Bad: {fileID: -745129881786663193, guid: fef44bb71802e0e43b1d827988238712, type: 3}
 --- !u!114 &320797149
 MonoBehaviour:
   m_ObjectHideFlags: 0
