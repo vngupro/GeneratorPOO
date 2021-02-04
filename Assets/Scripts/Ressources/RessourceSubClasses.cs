@@ -8,8 +8,10 @@ class Bonus : Ressource
     public string Attribut = "Bonus";
     public override void DisplayStats()
     {
-        Debug.Log("Ressource " + name + "Effect : "+ BEffect.ToString());
+       
+        Stats = "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + BEffect.ToString();
         base.DisplayStats();
+        
     }
     public Bonus(string _name) : base(_name)
     {
@@ -28,7 +30,8 @@ class Malus : Ressource
     public string Attribut = "Malus";
     public override void DisplayStats()
     {
-        Debug.Log("Ressource " + name + "Effect : " + MEffect.ToString());
+        
+        Stats = "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + MEffect.ToString();
         base.DisplayStats();
     }
     public Malus(string _name) : base(_name)

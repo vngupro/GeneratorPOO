@@ -7,10 +7,7 @@ class Ressource : Item
     public string name {get; set;}
     public RarityType rarity { get; set; }
     
-    public virtual void DisplayStats()
-    {
-        Debug.Log("Ressource " + name + ";Rarity : " + rarity.ToString());
-    }
+    
     public Ressource(string _name)
     {
         name = _name;
