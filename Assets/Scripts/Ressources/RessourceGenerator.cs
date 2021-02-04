@@ -8,9 +8,11 @@ public class RessourceGenerator : MonoBehaviour
     static List<Ressource> RessourceList = new List<Ressource>();
 
     public int random;
+    [SerializeField] AudioSource Potion;
 
     public void GenerateRessource()
     {
+        Potion.Play();
         for (int i = 0; i < 3; i++)
         {
             random = Random.Range(0, 2);

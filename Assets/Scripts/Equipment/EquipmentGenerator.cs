@@ -8,9 +8,11 @@ public class EquipmentGenerator : MonoBehaviour
 
     private int rng = 0;
     private int previousRng = 0;
+    [SerializeField] AudioSource Anvil;
 
     public void GenerateEquipment()
     {
+        Anvil.Play();
         for(int i = 0; i < 3; i++)
         {
             rng = Random.Range(0, 99);

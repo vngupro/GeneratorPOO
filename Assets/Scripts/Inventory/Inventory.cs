@@ -9,8 +9,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventorySlot slotPrefab;
     [SerializeField] GameObject inventory_ui;
     [SerializeField] GameObject startPos;
+    [SerializeField] GameObject Prefab;
     [SerializeField] private int xDistance = 180;                  //distance between two slots
     [SerializeField] private int yDistance = 160;
+    [SerializeField] AudioSource ZaHando;
     private int yIndex = -1;
 
     private void Awake() {
@@ -67,6 +69,15 @@ public class Inventory : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+    public void Reset()
+    {
+        ZaHando.Play();
+        itemList.Clear();
+        foreach (Transform child in inventory_ui.transform)
+        {
+            GameObject.Destroy(child.gameObject);
         }
     }
 
