@@ -7,7 +7,7 @@ public class InventorySlot : MonoBehaviour
 {
     public Item item;
 
-    private void Start()
+    private void Awake()
     {
         item = GetComponentInParent<Inventory>().itemList[GetComponentInParent<Inventory>().itemList.Count - 1];
         transform.GetChild(transform.GetChildCount() - 1).GetComponent<Image>().sprite = item.GetSprite();
