@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventorySlot slotPrefab;
     [SerializeField] GameObject inventory_ui;
     [SerializeField] GameObject startPos;
-    [SerializeField] private int xDistance = 160;                  //distance between two slots
+    [SerializeField] private int xDistance = 180;                  //distance between two slots
     [SerializeField] private int yDistance = 160;
     private int yIndex = -1;
 
