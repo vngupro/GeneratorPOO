@@ -7,7 +7,7 @@ public class EquipmentGenerator : MonoBehaviour
     private static Item item;
     private int rng = 0;
     private int previousRng = 0;
-    [SerializeField] AudioSource Anvil;
+    [SerializeField] private AudioSource Anvil;
 
     public void GenerateEquipment()
     {

@@ -6,9 +6,8 @@ public class RessourceGenerator : MonoBehaviour
 {
 
     private static Item item;
-
     public int random;
-    [SerializeField] AudioSource Potion;
+    [SerializeField] private AudioSource Potion;
 
     public void GenerateRessource()
     {
