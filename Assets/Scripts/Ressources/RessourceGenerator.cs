@@ -28,6 +28,8 @@ public class RessourceGenerator : MonoBehaviour
                     RessourceList[RessourceList.Count - 1].DisplayStats();
                     break;
             }
+
+            //Listeer | Inventory.cs 
             GameEvents.RessourceGenerated.Invoke(RessourceList[RessourceList.Count - 1]);
         }
         

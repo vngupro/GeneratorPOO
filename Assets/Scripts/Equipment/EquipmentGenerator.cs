@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EquipmentGenerator : MonoBehaviour
 {
-    public List<Equipment> equipmentList = new List<Equipment>();
-
+    private Item item;
     private int rng = 0;
     private int previousRng = 0;
     [SerializeField] AudioSource Anvil;
@@ -15,20 +14,20 @@ public class EquipmentGenerator : MonoBehaviour
         Anvil.Play();
         for(int i = 0; i < 3; i++)
         {
-            rng = Random.Range(0, 99);
+            rng = Random.Range(0, 100);
             NotTwiceTheSame(i, rng, previousRng);
 
             if (rng < 50)
             {
-                equipmentList.Add(new Weapon());
+                item = new Weapon();
             }
             else
             {
-                equipmentList.Add(new Armor());
+                item = new Armor();
             }
 
             //Listener | Inventory.cs
-            GameEvents.EquipmentGenerated.Invoke(equipmentList[equipmentList.Count -1]);
+            GameEvents.EquipmentGenerated.Invoke(item);
             previousRng = rng;
         }
     }

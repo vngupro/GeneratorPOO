@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private InventorySlot slotPrefab;
     [SerializeField] private GameObject startPos;
-    [SerializeField] AudioSource ZaHando;
+    [SerializeField] private AudioSource ZaHando;
 
     private float xDistance = Screen.width/16;                  //distance X between two slots
     private float yDistance = Screen.height/8.5f;                  //distance Y between two slots
@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
             Destroy(this);
         }
 
-        //Invoke | EquipmentGenerator.cs
+        //Invoke | EquipmentGenerator.cs & RessourceGenerator.cs
         GameEvents.EquipmentGenerated.AddListener(AddItem);
         GameEvents.RessourceGenerated.AddListener(AddItem);
     }
