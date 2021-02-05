@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Equipment : Item
 {
-    #region Variable | Properties
+    #region Properties
     public int Level { get; private set; } = 0;
     public int MaxDurability { get; private set; } = 0;
     public MaterialType MaterialName { get; private set; } = MaterialType.Bronze;
@@ -14,6 +14,8 @@ public class Equipment : Item
     public int StatValueRequire { get; private set; } = 0;
     public int BuyPrice { get; private set; } = 0;
     public int SellPrice { get; private set; } = 0;
+
+    //variable
     public int durability = 0;
     #endregion
     #region Constructor
@@ -206,6 +208,18 @@ public class Equipment : Item
             case RarityType.Legendary:      return Color.yellow;
         }
         return base.GetColor();
+    }
+
+    public override string DisplayStats()
+    {
+        string description = "Level : " + this.Level + "\n";
+        description += "Durability : " + this.durability + "/" + this.MaxDurability + "\n";
+        description += "Level Require : " + this.PlayerLevelRequire + "\n";
+        if (this.StatRequire != StatType.NONE)
+        {
+            description += this.StatRequire + " Require : " + this.StatValueRequire + "\n";
+        }
+        return description;
     }
     #endregion
 }

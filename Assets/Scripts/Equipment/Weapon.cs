@@ -390,6 +390,7 @@ public class Weapon : Equipment
         }
         description += "Attack : " + this.MinDamage + "-" + this.MaxDamage + "\n";
         description += "Attack Speed : " + Math.Round(this.AtkPerSec, 2) + "\n";
+        description += base.DisplayStats();
         if (this.CriticalChance != 0)
         {
             description += "Critical Rate : " + Math.Round(this.CriticalChance, 2) + "\n";

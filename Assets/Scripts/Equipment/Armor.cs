@@ -113,6 +113,7 @@ public class Armor : Equipment
     {
         string description = this.Name + "\n";
         description += "Defense : " + this.Value + "\n";
+        description += base.DisplayStats();
         if (this.resistanceList.Count != 0)
         {
             foreach (Resistance elem in resistanceList)
