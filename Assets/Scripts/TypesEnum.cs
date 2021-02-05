@@ -100,11 +100,3 @@ public enum RarityType
     Legendary                                                   //5
 }
 
-//ITEM
-public enum ItemTypes{
-    NONE,
-    WEAPON,
-    ARMOR,
-    BONUS,
-    MALUS
-}
