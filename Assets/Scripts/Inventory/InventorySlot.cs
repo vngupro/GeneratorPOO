@@ -22,20 +22,20 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             player.texte.text = item.DisplayStats();
             if(player.mousePos.x > 0.8f)
             {
-                player.StatsFrame.transform.position = (player.mousePos * new Vector2(Screen.width, Screen.height)) - new Vector2(Screen.width/12, Screen.height/5);
+                player.StatsFrame.transform.position = (player.mousePos * new Vector2(Screen.width, Screen.height)) - new Vector2(Screen.width/12, Screen.height/3.5f);
             }
             else if(player.mousePos.x > 0.2f)
             {
-                player.StatsFrame.transform.position = (player.mousePos * new Vector2(Screen.width, Screen.height)) - new Vector2(0, Screen.height / 5);
+                player.StatsFrame.transform.position = (player.mousePos * new Vector2(Screen.width, Screen.height)) - new Vector2(0, Screen.height / 3.5f);
             }
             else
             {
-                player.StatsFrame.transform.position = (player.mousePos * new Vector2(Screen.width, Screen.height)) - new Vector2(-Screen.width / 12, Screen.height / 5);
+                player.StatsFrame.transform.position = (player.mousePos * new Vector2(Screen.width, Screen.height)) - new Vector2(-Screen.width / 12, Screen.height / 3.5f);
             }
 
             if(player.mousePos.y < 0.5f)
             {
-                player.StatsFrame.transform.position = new Vector2(player.StatsFrame.transform.position.x, player.mousePos.y * Screen.height + Screen.height / 5);
+                player.StatsFrame.transform.position = new Vector2(player.StatsFrame.transform.position.x, player.mousePos.y * Screen.height + Screen.height / 3.5f);
             }
         }
     }

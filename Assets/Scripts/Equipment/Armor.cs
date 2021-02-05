@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Armor : Equipment
 {
-    #region Variable
+    #region Properties
     public int Value { get; private set; } = 0;
     public ArmorType ArmorType { get; private set; } = ArmorType.Shield;
     #endregion

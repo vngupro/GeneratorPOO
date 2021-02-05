@@ -15,9 +15,9 @@ public class Weapon : Equipment
     public float CriticalDamage { get; private set; } = .0f;
     #endregion
     #region Lists
-    public List<Attribute> attributeList = new List<Attribute>();
-    public List<SubDamage> subDamageList = new List<SubDamage>();
-    public List<Ailment> ailmentList = new List<Ailment>();
+    private List<Attribute> attributeList = new List<Attribute>();
+    private List<SubDamage> subDamageList = new List<SubDamage>();
+    private List<Ailment> ailmentList = new List<Ailment>();
     #endregion
     #region Construtor
     public Weapon()
