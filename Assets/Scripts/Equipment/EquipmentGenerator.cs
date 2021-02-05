@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EquipmentGenerator : MonoBehaviour
 {
-    private Item item;
+    private static Item item;
     private int rng = 0;
     private int previousRng = 0;
     [SerializeField] AudioSource Anvil;

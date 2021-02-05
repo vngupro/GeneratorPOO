@@ -5,7 +5,7 @@ using UnityEngine;
 public class RessourceGenerator : MonoBehaviour
 {
 
-    static List<Ressource> RessourceList = new List<Ressource>();
+    private static Item item;
 
     public int random;
     [SerializeField] AudioSource Potion;
@@ -19,18 +19,16 @@ public class RessourceGenerator : MonoBehaviour
             switch (random)
             {
                 case 0:
-                    RessourceList.Add(new Malus("Malus"));
-                    RessourceList[RessourceList.Count - 1].DisplayStats();
+                    item = new Malus("Malus");
                     break;
 
                 case 1:
-                    RessourceList.Add(new Bonus("Bonus"));
-                    RessourceList[RessourceList.Count - 1].DisplayStats();
+                    item = new Bonus("Bonus");
                     break;
             }
 
             //Listeer | Inventory.cs 
-            GameEvents.RessourceGenerated.Invoke(RessourceList[RessourceList.Count - 1]);
+            GameEvents.RessourceGenerated.Invoke(item);
         }
         
     }
