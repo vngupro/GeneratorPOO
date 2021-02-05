@@ -22,7 +22,7 @@ public class Equipment : Item
         this.Level = Random.Range(1, 99);
         this.MaxDurability = Random.Range(100, 999);
         this.MaterialName = (MaterialType)(Random.Range(0, 6));
-        this.Rarity = (RarityType)(Random.Range(0, 5));
+        this.Rarity = (RarityType)(Random.Range(0, 6));
         this.PlayerLevelRequire = InitPlayerLevelRequire();
         this.StatRequire = InitStatRequire();
         if (this.StatRequire != StatType.NONE)
@@ -193,6 +193,19 @@ public class Equipment : Item
             case RarityType.Legendary:      return Random.Range(250, 300);
         }
         return 0;
+    }
+    public override Color GetColor()
+    {
+        switch (this.Rarity)
+        {
+            case RarityType.Broken:         return Color.grey;
+            case RarityType.Common:         return Color.white;
+            case RarityType.Uncommon:       return Color.green;
+            case RarityType.Rare:           return Color.blue;
+            case RarityType.Epic:           return Color.magenta;
+            case RarityType.Legendary:      return Color.yellow;
+        }
+        return base.GetColor();
     }
     #endregion
 }

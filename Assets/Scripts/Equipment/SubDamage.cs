@@ -48,7 +48,7 @@ public class SubDamage
         
         switch (rarity)
         {
-            case RarityType.Broken:         res *= 0;
+            case RarityType.Broken:         res /= 2;
                 break;
             case RarityType.Common:         res *= 1;
                 break;

@@ -16,9 +16,19 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int xDistance = 180;                  //distance X between two slots
     [SerializeField] private int yDistance = 160;                  //distance Y between two slots
     private int yIndex = -1;                                       //row Count
-
+    private static Inventory _instance;
     private void Awake() {
+
+        if (_instance == null){
+
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
     
+            //Rest of your Awake code
+    
+        } else {
+            Destroy(this);
+        }
         //Invoke | EquipmentGenerator.cs
         GameEvents.EquipmentGenerated.AddListener(AddItem);
         GameEvents.RessourceGenerated.AddListener(AddItem);
@@ -41,7 +51,7 @@ public class Inventory : MonoBehaviour
             newSlot.item = newItem;
             newSlot.transform.GetChild(newSlot.transform.childCount - 1).GetComponent<Image>().sprite = newItem.GetSprite();
             newSlot.transform.SetParent(inventory_ui.transform);
-
+            newSlot.transform.GetChild(0).GetComponent<Image>().color = newItem.GetColor();
             //change row
             if ((itemList.Count - 1) % 15 == 0)
             {

@@ -15,8 +15,8 @@ public class Armor : Equipment
     public Armor()
     {
         this.itemType = ItemTypes.ARMOR;
-        this.Value = InitValue();
         this.ArmorType = (ArmorType)(Random.Range(0, 8));
+        this.Value = InitValue();
         CreateResistanceList();
         this.Name = EquipementNameGenerator();
     }
@@ -24,17 +24,28 @@ public class Armor : Equipment
     #region Method
     private int InitValue()
     {
+        int res = 0;
         switch (this.MaterialName)
         {
-            case MaterialType.Bronze:       return Random.Range(1, 100);
-            case MaterialType.Silver:       return Random.Range(75, 200);
-            case MaterialType.Gold:         return Random.Range(150, 300);
-            case MaterialType.Platinum:     return Random.Range(250, 400);
-            case MaterialType.Mithril:      return Random.Range(300, 500);
-            case MaterialType.Orihalcon:    return Random.Range(400, 600);
-            case MaterialType.Adamantium:   return Random.Range(500, 999);
+            case MaterialType.Bronze:       res = Random.Range(1, 100); break;
+            case MaterialType.Silver:       res = Random.Range(50, 200); break;
+            case MaterialType.Gold:         res = Random.Range(150, 250); break;
+            case MaterialType.Platinum:     res = Random.Range(200, 300); break; 
+            case MaterialType.Mithril:      res = Random.Range(250, 350); break;
+            case MaterialType.Orihalcon:    res = Random.Range(300, 400); break;
+            case MaterialType.Adamantium:   res = Random.Range(350, 500); break;
         }
-        return 0;
+
+        switch (this.Rarity)
+        {
+            case RarityType.Broken:         res /= 2; break;
+            case RarityType.Common:         res *= 1; break;
+            case RarityType.Uncommon:       res *= 2; break;
+            case RarityType.Rare:           res *= 3; break;
+            case RarityType.Epic:           res *= 4; break;
+            case RarityType.Legendary:      res *= 5; break;
+        }
+        return res;
     }
     private int NbrResistanceToCreate()
     {
@@ -107,7 +118,7 @@ public class Armor : Equipment
         {
             foreach (Resistance elem in resistanceList)
             {
-                description += elem.resistanceType.ToString() + " Resistance : " + elem.pct + "\n";
+                description += elem.resistanceType.ToString() + " Resistance : " + Mathf.Round(elem.pct) + "\n";
             }
         }
         return description;

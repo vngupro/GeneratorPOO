@@ -6,7 +6,6 @@ public class Item
 {
     public string Name { get; protected set; } = "";
     public ItemTypes itemType = ItemTypes.NONE;
-    
     public virtual string EquipementNameGenerator()
     {
         string nameGenerate = "Random Equipment";
@@ -20,6 +19,13 @@ public class Item
     public virtual Sprite GetSprite()
     {
         return ItemAssets.Instance.defaultSprite;
+    }
+
+    public virtual Color GetColor()
+    {
+        Color color = Color.white;
+
+        return color;
     }
 }
 

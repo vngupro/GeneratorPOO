@@ -30,7 +30,7 @@ public class Weapon : Equipment
         int rngTwoHanded = UnityEngine.Random.Range(0, 99);
         if (this.WeaponType != WeaponType.Daggers && this.WeaponType != WeaponType.Tome) this.IsTwoHanded = (rngTwoHanded < 50) ? true : false;
         this.AtkPerSec = InitAtkPerSec();
-        if (IsTwoHanded) this.AtkPerSec *= UnityEngine.Random.Range(1.5f, 2.0f);
+        if (IsTwoHanded) this.AtkPerSec *= UnityEngine.Random.Range(1.1f, 1.5f);
         this.CriticalChance = UnityEngine.Random.Range(0.0f, 100.0f);
         this.CriticalDamage = UnityEngine.Random.Range(10.0f, 200.0f);
         CreateAttributeList();
@@ -390,11 +390,11 @@ public class Weapon : Equipment
             description += "Two Handed\n";
         }
         description += "Attack : " + this.MinDamage + "-" + this.MaxDamage + "\n";
-        description += "Attack Speed" + this.AtkPerSec + "\n";
+        description += "Attack Speed : " + Math.Round(this.AtkPerSec, 2) + "\n";
         if (this.CriticalChance != 0)
         {
-            description += "Critical Rate : " + this.CriticalChance + "\n";
-            description += "Critical Damage : " + this.CriticalDamage + "\n";
+            description += "Critical Rate : " + Math.Round(this.CriticalChance, 2) + "\n";
+            description += "Critical Damage : " + Math.Round(this.CriticalDamage, 2) + "\n";
         }
         if(this.attributeList.Count != 0)
         {
@@ -407,26 +407,18 @@ public class Weapon : Equipment
         {
             foreach (SubDamage elem in subDamageList)
             {
-                description += elem.subDamageType.ToString() + " Damage : " + elem.value + " (" + elem.pct + "%)\n";
+                description += elem.subDamageType.ToString() + " Damage : " + elem.value + " Rate : " + Math.Round(elem.pct, 2) + " pct.\n";
             }
         }
         if(this.ailmentList.Count != 0)
         {
             foreach (Ailment elem in ailmentList)
             {
-                description += elem.ailmentType.ToString() + " Damage : " + elem.value + " (" + elem.pct + "%)" + " Duration : " + elem.duration + "\n";
+                description += elem.ailmentType.ToString() + " Damage : " + elem.value + " Rate : " + Math.Round(elem.pct, 2) + " pct." + " Duration : " + Math.Round(elem.duration, 1) + "\n";
             }
         }
         return description;
     }
-
-    //public bool IsTwoHanded { get; private set; } = false;
-    //public float AtkPerSec { get; private set; } = .0f;
-    //public float CriticalChance { get; private set; } = .0f;
-    //public float CriticalDamage { get; private set; } = .0f;
-    //public List<Attribute> attributeList = new List<Attribute>();
-    //public List<SubDamage> subDamageList = new List<SubDamage>();
-    //public List<Ailment> ailmentList = new List<Ailment>();
     #endregion
     #endregion
 }
