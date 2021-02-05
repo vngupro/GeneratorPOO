@@ -12,9 +12,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject startPos;
     [SerializeField] AudioSource ZaHando;
 
-    [Header("DEBUG")]
-    [SerializeField] private int xDistance = 180;                  //distance X between two slots
-    [SerializeField] private int yDistance = 160;                  //distance Y between two slots
+    private float xDistance = Screen.width/16;                  //distance X between two slots
+    private float yDistance = Screen.height/8.5f;                  //distance Y between two slots
     private int yIndex = -1;                                       //row Count
     private static Inventory _instance;
     private void Awake() {
