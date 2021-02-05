@@ -14,5 +14,9 @@ public class Player : MonoBehaviour
     private void Update()
     {
         mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
