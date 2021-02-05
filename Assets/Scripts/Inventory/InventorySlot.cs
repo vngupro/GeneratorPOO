@@ -32,6 +32,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             {
                 player.StatsFrame.transform.position = (player.mousePos * new Vector2(1920, 1080)) - new Vector2(-150, 200);
             }
+
+            if(player.mousePos.y < 0.5f)
+            {
+                player.StatsFrame.transform.position = new Vector2(player.StatsFrame.transform.position.x, player.mousePos.y * 1080 + 200);
+            }
         }
     }
     public void OnPointerEnter(PointerEventData eventData)

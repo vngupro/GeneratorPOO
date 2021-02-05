@@ -209,7 +209,7 @@ MonoBehaviour:
   - {fileID: 6627959511736994385, guid: a12be17eea689f4419561e900adb9442, type: 3}
   - {fileID: -5676312157698576710, guid: a12be17eea689f4419561e900adb9442, type: 3}
   pantsList:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 9a70d3eacd0fb024ab2d1fdd7f869177, type: 3}
   bootsList:
   - {fileID: 3670242271967795648, guid: a12be17eea689f4419561e900adb9442, type: 3}
   - {fileID: -3894112613718088472, guid: a12be17eea689f4419561e900adb9442, type: 3}
