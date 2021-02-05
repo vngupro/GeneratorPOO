@@ -95,12 +95,22 @@ public class Armor : Equipment
             case ArmorType.Shield:      return ItemAssets.Instance.shieldSprite;
             case ArmorType.Shoulder:    return ItemAssets.Instance.shoulderSprite;
             case ArmorType.Cape:        return ItemAssets.Instance.capeSprite;
+            case ArmorType.Pants:       return ItemAssets.Instance.pantsSprite;
         }
         return ItemAssets.Instance.defaultSprite;
     }
     public override string DisplayStats()
     {
-        return "Armor";
+        string description = this.Name + "\n";
+        description += "Defense : " + this.Value + "\n";
+        if (this.resistanceList.Count != 0)
+        {
+            foreach (Resistance elem in resistanceList)
+            {
+                description += elem.resistanceType.ToString() + " Resistance : " + elem.pct + "\n";
+            }
+        }
+        return description;
     }
     #endregion
 }

@@ -52,30 +52,6 @@ public class Inventory : MonoBehaviour
             newSlot.transform.position = new Vector2(startPos.transform.position.x + ((itemList.Count - 1) % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
         }
     }
-
-    public void ShowInfo()
-    {
-        Item item = itemList[itemList.Count - 1];
-        switch (item.itemType)
-        {
-            case ItemTypes.ARMOR:
-                Armor armor = (Armor)item;
-                Debug.Log("Armor def value" + armor.Value);
-                break;
-            case ItemTypes.WEAPON:
-                Weapon weapon = (Weapon)item;
-                Debug.Log("Weapon Max Value" + weapon.MaxDamage);
-                break;
-            case ItemTypes.BONUS:
-                //Bonus bonus = (Bonus)item;
-                break;
-            case ItemTypes.MALUS:
-                //Malus malus = (Malus)item;
-                break;
-            default:
-                break;
-        }
-    }
     public void Reset()
     {
         ZaHando.Play();

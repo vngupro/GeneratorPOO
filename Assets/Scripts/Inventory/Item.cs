@@ -14,7 +14,7 @@ public class Item
     }
     public virtual string DisplayStats()
     {
-        return "";
+        return "Item";
     }
 
     public virtual Sprite GetSprite()

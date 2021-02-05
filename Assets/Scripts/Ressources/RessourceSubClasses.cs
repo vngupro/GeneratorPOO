@@ -8,12 +8,13 @@ class Bonus : Ressource
     public string Attribut = "Bonus";
     public override string DisplayStats()
     {
-        return "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + BEffect.ToString();   
+        return "class : " + this.GetType().ToString() + " | name : " + Name +  " | Effect : " + BEffect.ToString();   
     }
     public Bonus(string _name) : base(_name)
     {
         name = _name;
         BEffect = (BonusEffect)(Random.Range(0, 4));
+        this.itemType = ItemTypes.BONUS;
     }
     public override Sprite GetSprite()
     {
@@ -27,12 +28,13 @@ class Malus : Ressource
     public string Attribut = "Malus";
     public override string DisplayStats()
     {     
-        return "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + MEffect.ToString();
+        return "class : " + this.GetType().ToString() + " | name : " + Name + " | Effect : " + MEffect.ToString();
     }
     public Malus(string _name) : base(_name)
     {
         name = _name;
         MEffect = (MalusEffect)(Random.Range(0,4));
+        this.itemType = ItemTypes.MALUS;
     }
     public override Sprite GetSprite()
     {

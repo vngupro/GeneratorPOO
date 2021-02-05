@@ -384,8 +384,49 @@ public class Weapon : Equipment
 
     public override string DisplayStats()
     {
-        return "Weapon";
+        string description = this.Name + "\n";
+        if (this.IsTwoHanded)
+        {
+            description += "Two Handed\n";
+        }
+        description += "Attack : " + this.MinDamage + "-" + this.MaxDamage + "\n";
+        description += "Attack Speed" + this.AtkPerSec + "\n";
+        if (this.CriticalChance != 0)
+        {
+            description += "Critical Rate : " + this.CriticalChance + "\n";
+            description += "Critical Damage : " + this.CriticalDamage + "\n";
+        }
+        if(this.attributeList.Count != 0)
+        {
+            foreach(Attribute elem in attributeList)
+            {
+                description += elem.attributeType.ToString() + " Damage : " + elem.value + "\n";
+            }
+        }
+        if(this.subDamageList.Count != 0)
+        {
+            foreach (SubDamage elem in subDamageList)
+            {
+                description += elem.subDamageType.ToString() + " Damage : " + elem.value + " (" + elem.pct + "%)\n";
+            }
+        }
+        if(this.ailmentList.Count != 0)
+        {
+            foreach (Ailment elem in ailmentList)
+            {
+                description += elem.ailmentType.ToString() + " Damage : " + elem.value + " (" + elem.pct + "%)" + " Duration : " + elem.duration + "\n";
+            }
+        }
+        return description;
     }
+
+    //public bool IsTwoHanded { get; private set; } = false;
+    //public float AtkPerSec { get; private set; } = .0f;
+    //public float CriticalChance { get; private set; } = .0f;
+    //public float CriticalDamage { get; private set; } = .0f;
+    //public List<Attribute> attributeList = new List<Attribute>();
+    //public List<SubDamage> subDamageList = new List<SubDamage>();
+    //public List<Ailment> ailmentList = new List<Ailment>();
     #endregion
     #endregion
 }
