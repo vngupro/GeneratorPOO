@@ -22,7 +22,6 @@ public class Weapon : Equipment
     #region Construtor
     public Weapon()
     {
-        this.itemType = ItemTypes.WEAPON;
         this.WeaponType = (WeaponType)(UnityEngine.Random.Range(0, Enum.GetValues(typeof(WeaponType)).Length));
         this.MinDamage = InitDamage();
         this.MaxDamage = this.MinDamage + UnityEngine.Random.Range(1, 100);

@@ -14,7 +14,6 @@ public class Armor : Equipment
     #region Constructor
     public Armor()
     {
-        this.itemType = ItemTypes.ARMOR;
         this.ArmorType = (ArmorType)(Random.Range(0, 8));
         this.Value = InitValue();
         CreateResistanceList();
