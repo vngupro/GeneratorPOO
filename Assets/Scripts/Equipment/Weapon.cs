@@ -413,7 +413,7 @@ public class Weapon : Equipment
         {
             foreach (Ailment elem in ailmentList)
             {
-                description += elem.ailmentType.ToString() + " Damage : " + elem.value + " Rate : " + Math.Round(elem.pct, 2) + " pct." + " Duration : " + Math.Round(elem.duration, 1) + "\n";
+                description += elem.ailmentType.ToString() + " Damage : " + elem.value + " Rate : " + Math.Round(elem.pct, 2) + " pct." + "\nDuration : " + Math.Round(elem.duration, 1) + "\n";
             }
         }
         return description;
