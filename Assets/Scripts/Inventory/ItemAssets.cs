@@ -14,27 +14,27 @@ public class ItemAssets : MonoBehaviour
     public Sprite defaultSprite;
 
     //Weapons
-    public Sprite swordSprite;
-    public Sprite axeSprite;
-    public Sprite spearSprite;
-    public Sprite maceSprite;
-    public Sprite hammerSprite;
-    public Sprite daggersSprite;
-    public Sprite bowSprite;
-    public Sprite scepterSprite;
-    public Sprite staffSprite;
-    public Sprite tomeSprite;
+    public List<Sprite> swordList = new List<Sprite>();
+    public List<Sprite> axeList = new List<Sprite>();
+    public List<Sprite> spearList = new List<Sprite>();
+    public List<Sprite> maceList = new List<Sprite>();
+    public List<Sprite> hammerList = new List<Sprite>();
+    public List<Sprite> daggersList = new List<Sprite>();
+    public List<Sprite> bowList = new List<Sprite>();
+    public List<Sprite> scepterList = new List<Sprite>();
+    public List<Sprite> staffList = new List<Sprite>();
+    public List<Sprite> tomeList = new List<Sprite>();
 
     //Armor
-    public Sprite helmetSprite;
-    public Sprite shoulderSprite;
-    public Sprite plastronSprite;
-    public Sprite beltSprite;
-    public Sprite glovesSprite;
-    public Sprite pantsSprite;
-    public Sprite bootsSprite;
-    public Sprite shieldSprite;
-    public Sprite capeSprite;
+    public List<Sprite> helmetList = new List<Sprite>();
+    public List<Sprite> shoulderList = new List<Sprite>();
+    public List<Sprite> plastronList = new List<Sprite>();
+    public List<Sprite> beltList = new List<Sprite>();
+    public List<Sprite> glovesList = new List<Sprite>();
+    public List<Sprite> pantsList = new List<Sprite>();
+    public List<Sprite> bootsList = new List<Sprite>();
+    public List<Sprite> shieldList = new List<Sprite>();
+    public List<Sprite> capeList = new List<Sprite>();
 
     public Sprite Good;
     public Sprite Bad;

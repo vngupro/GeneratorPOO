@@ -367,16 +367,16 @@ public class Weapon : Equipment
     {
         switch (WeaponType)
         {
-            case WeaponType.Axe: return ItemAssets.Instance.axeSprite;
-            case WeaponType.Bow: return ItemAssets.Instance.bowSprite;
-            case WeaponType.Daggers: return ItemAssets.Instance.daggersSprite;
-            case WeaponType.Hammer: return ItemAssets.Instance.hammerSprite;
-            case WeaponType.Mace: return ItemAssets.Instance.maceSprite;
-            case WeaponType.Scepter: return ItemAssets.Instance.scepterSprite;
-            case WeaponType.Spear: return ItemAssets.Instance.spearSprite;
-            case WeaponType.Staff: return ItemAssets.Instance.staffSprite;
-            case WeaponType.Sword: return ItemAssets.Instance.swordSprite;
-            case WeaponType.Tome: return ItemAssets.Instance.tomeSprite;
+            case WeaponType.Axe:        return ItemAssets.Instance.axeList[UnityEngine.Random.Range(0, ItemAssets.Instance.axeList.Count)];
+            case WeaponType.Bow:        return ItemAssets.Instance.bowList[UnityEngine.Random.Range(0, ItemAssets.Instance.bowList.Count)];
+            case WeaponType.Daggers:    return ItemAssets.Instance.daggersList[UnityEngine.Random.Range(0, ItemAssets.Instance.daggersList.Count)];
+            case WeaponType.Hammer:     return ItemAssets.Instance.hammerList[UnityEngine.Random.Range(0, ItemAssets.Instance.hammerList.Count)];
+            case WeaponType.Mace:       return ItemAssets.Instance.maceList[UnityEngine.Random.Range(0, ItemAssets.Instance.maceList.Count)];
+            case WeaponType.Scepter:    return ItemAssets.Instance.scepterList[UnityEngine.Random.Range(0, ItemAssets.Instance.scepterList.Count)];
+            case WeaponType.Spear:      return ItemAssets.Instance.spearList[UnityEngine.Random.Range(0, ItemAssets.Instance.spearList.Count)];
+            case WeaponType.Staff:      return ItemAssets.Instance.staffList[UnityEngine.Random.Range(0, ItemAssets.Instance.staffList.Count)];
+            case WeaponType.Sword:      return ItemAssets.Instance.swordList[UnityEngine.Random.Range(0, ItemAssets.Instance.swordList.Count)];
+            case WeaponType.Tome:       return ItemAssets.Instance.tomeList[UnityEngine.Random.Range(0, ItemAssets.Instance.tomeList.Count)];
         }
         return ItemAssets.Instance.defaultSprite;
     }

@@ -97,15 +97,15 @@ public class Armor : Equipment
     {
         switch (ArmorType)
         {
-            case ArmorType.Belt:        return ItemAssets.Instance.beltSprite;
-            case ArmorType.Boots:       return ItemAssets.Instance.bootsSprite;
-            case ArmorType.Gloves:      return ItemAssets.Instance.glovesSprite;
-            case ArmorType.Helmet:      return ItemAssets.Instance.helmetSprite;
-            case ArmorType.Plastron:    return ItemAssets.Instance.plastronSprite;
-            case ArmorType.Shield:      return ItemAssets.Instance.shieldSprite;
-            case ArmorType.Shoulder:    return ItemAssets.Instance.shoulderSprite;
-            case ArmorType.Cape:        return ItemAssets.Instance.capeSprite;
-            case ArmorType.Pants:       return ItemAssets.Instance.pantsSprite;
+            case ArmorType.Belt:        return ItemAssets.Instance.beltList[UnityEngine.Random.Range(0, ItemAssets.Instance.beltList.Count)];
+            case ArmorType.Boots:       return ItemAssets.Instance.bootsList[UnityEngine.Random.Range(0, ItemAssets.Instance.bootsList.Count)];
+            case ArmorType.Gloves:      return ItemAssets.Instance.glovesList[UnityEngine.Random.Range(0, ItemAssets.Instance.glovesList.Count)];
+            case ArmorType.Helmet:      return ItemAssets.Instance.helmetList[UnityEngine.Random.Range(0, ItemAssets.Instance.helmetList.Count)];
+            case ArmorType.Plastron:    return ItemAssets.Instance.plastronList[UnityEngine.Random.Range(0, ItemAssets.Instance.plastronList.Count)];
+            case ArmorType.Shield:      return ItemAssets.Instance.shieldList[UnityEngine.Random.Range(0, ItemAssets.Instance.shieldList.Count)];
+            case ArmorType.Shoulder:    return ItemAssets.Instance.shoulderList[UnityEngine.Random.Range(0, ItemAssets.Instance.shoulderList.Count)];
+            case ArmorType.Cape:        return ItemAssets.Instance.capeList[UnityEngine.Random.Range(0, ItemAssets.Instance.capeList.Count)];
+            case ArmorType.Pants:       return ItemAssets.Instance.pantsList[UnityEngine.Random.Range(0, ItemAssets.Instance.pantsList.Count)];
         }
         return ItemAssets.Instance.defaultSprite;
     }
