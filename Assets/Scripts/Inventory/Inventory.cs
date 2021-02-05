@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
         } else {
             Destroy(this);
         }
+
         //Invoke | EquipmentGenerator.cs
         GameEvents.EquipmentGenerated.AddListener(AddItem);
         GameEvents.RessourceGenerated.AddListener(AddItem);
@@ -69,7 +70,10 @@ public class Inventory : MonoBehaviour
         yIndex = -1;
         foreach (Transform child in inventory_ui.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if (child.CompareTag("Slot"))
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
     }
 
