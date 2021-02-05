@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,113 +6,356 @@ using UnityEngine;
 public class Weapon : Equipment
 {
     #region Variable
-    public int MinDamage { get; private set; }  = 0;
-    public int MaxDamage { get; private set; } = 0;                                                 
-    public float AtkPerSec { get; private set; } = .0f;
+    public WeaponType WeaponType { get; private set; } = WeaponType.Sword;
+    public int MinDamage { get; private set; } = 0;
+    public int MaxDamage { get; private set; } = 0;
     public bool IsTwoHanded { get; private set; } = false;
+    public float AtkPerSec { get; private set; } = .0f;
     public float CriticalChance { get; private set; } = .0f;
     public float CriticalDamage { get; private set; } = .0f;
-    public WeaponType WeaponType { get; private set; } = WeaponType.Sword;
     #endregion
     #region Lists
-    public List<Ailment> ailmentList = new List<Ailment>();
     public List<Attribute> attributeList = new List<Attribute>();
     public List<SubDamage> subDamageList = new List<SubDamage>();
+    public List<Ailment> ailmentList = new List<Ailment>();
     #endregion
     #region Construtor
     public Weapon()
     {
         this.itemType = ItemTypes.WEAPON;
-
-        this.MinDamage = Random.Range(1, 998);
-        do
-        {
-            this.MaxDamage = Random.Range(2, 999);
-        } while (this.MaxDamage < this.MinDamage);
-
-        this.AtkPerSec = Random.Range(0.5f, 2.5f);
-        int rngTwoHanded = Random.Range(0, 99);
-        this.IsTwoHanded = (rngTwoHanded < 50) ? true : false;
-        this.CriticalChance = Random.Range(0.0f, 100.0f);
-        this.CriticalDamage = Random.Range(10.0f, 200.0f);
-        int rngDamageType = Random.Range(0, 99);
-        this.WeaponType = (WeaponType)(Random.Range(0, 9));
-
-        do
-        {
-            ailmentList.Add(CreateAilment());
-        } while (ailmentList[ailmentList.Count - 1].ailmentType != AilmentType.NONE);
-
-        do
-        {
-            attributeList.Add(CreateAttribute());
-        } while (attributeList[attributeList.Count - 1].attributeType != AttributeType.NONE);
-
-        do
-        {
-            subDamageList.Add(CreateSubDamage());
-        } while (subDamageList[subDamageList.Count - 1].subDamageType != SubDamageType.NONE);
-
+        this.WeaponType = (WeaponType)(UnityEngine.Random.Range(0, Enum.GetValues(typeof(WeaponType)).Length));
+        this.MinDamage = InitDamage();
+        this.MaxDamage = this.MinDamage + UnityEngine.Random.Range(1, 100);
+        if (this.MaxDamage > 999) this.MaxDamage = 999;
+        int rngTwoHanded = UnityEngine.Random.Range(0, 99);
+        if (this.WeaponType != WeaponType.Daggers && this.WeaponType != WeaponType.Tome) this.IsTwoHanded = (rngTwoHanded < 50) ? true : false;
+        this.AtkPerSec = InitAtkPerSec();
+        if (IsTwoHanded) this.AtkPerSec *= UnityEngine.Random.Range(1.5f, 2.0f);
+        this.CriticalChance = UnityEngine.Random.Range(0.0f, 100.0f);
+        this.CriticalDamage = UnityEngine.Random.Range(10.0f, 200.0f);
+        CreateAttributeList();
+        CreateSubDamageList();
+        CreateAilmentList();
         this.Name = EquipementNameGenerator();
     }
     #endregion
     #region Method
+    //Create Ailment by choosing in a pool of doNotHave AilmentType
     public Ailment CreateAilment()
     {
-        Ailment ailment = new Ailment();
-        bool alreadyHave;
-        do
+        List<AilmentType> alreadyHaveList = new List<AilmentType>();
+        List<AilmentType> doNotHaveList = new List<AilmentType>();
+        var allTypeArray = Enum.GetValues(typeof(AilmentType));
+        Ailment ailment;
+        if(ailmentList.Count != 0)
         {
-            alreadyHave = false;
             foreach (Ailment element in ailmentList)
             {
-                if (ailment.ailmentType == element.ailmentType)
+                alreadyHaveList.Add(element.ailmentType);
+            }
+
+            foreach (AilmentType elem in allTypeArray)
+            {
+                bool gotIt = false;
+                foreach (AilmentType other in alreadyHaveList)
                 {
-                    alreadyHave = true;
-                    ailment = new Ailment();
+                    if (elem == other)
+                    {
+                        gotIt = true;
+                    }
+                }
+
+                if (!gotIt)
+                {
+                    doNotHaveList.Add(elem);
                 }
             }
-        } while (alreadyHave);
+
+            if (doNotHaveList.Count == 0)
+            {
+                return null;
+            }
+
+            ailment = new Ailment(doNotHaveList[UnityEngine.Random.Range(0, doNotHaveList.Count - 1)]);
+        }
+        else
+        {
+            ailment = new Ailment();
+        }
 
         return ailment;
     }
+
+    public Ailment CreateAilment(AilmentType type)
+    {
+        Ailment ailment = new Ailment(type);
+        foreach (Ailment element in ailmentList)
+        {
+            if (ailment.ailmentType == element.ailmentType)
+            {
+                return null;
+            }
+        }
+        return ailment; 
+    }
+
+    // Create Attribute by choosing in a pool of doNotHave AttributeType
     public Attribute CreateAttribute()
     {
-        Attribute attribute = new Attribute();
-        bool alreadyHave;
-        do
+        List<AttributeType> alreadyHaveList = new List<AttributeType>();
+        List<AttributeType> doNotHaveList = new List<AttributeType>();
+        var allTypeArray = Enum.GetValues(typeof(AttributeType));
+        Attribute attribute;
+        if (attributeList.Count != 0)
         {
-            alreadyHave = false;
             foreach (Attribute element in attributeList)
             {
-                if (attribute.attributeType == element.attributeType)
+                alreadyHaveList.Add(element.attributeType);
+            }
+
+            foreach (AttributeType elem in allTypeArray)
+            {
+                bool gotIt = false;
+                foreach (AttributeType other in alreadyHaveList)
                 {
-                    alreadyHave = true;
-                    attribute = new Attribute();
+                    if (elem == other)
+                    {
+                        gotIt = true;
+                    }
+                }
+
+                if (!gotIt)
+                {
+                    doNotHaveList.Add(elem);
                 }
             }
-        } while (alreadyHave);
+
+            if (doNotHaveList.Count == 0)
+            {
+                return null;
+            }
+
+            attribute = new Attribute(doNotHaveList[UnityEngine.Random.Range(0, doNotHaveList.Count - 1)]);
+        }
+        else
+        {
+            attribute = new Attribute();
+        }
 
         return attribute;
     }
-    public SubDamage CreateSubDamage()
+    public SubDamage CreateSubDamage(SubDamageType type)
     {
-        SubDamage subDamage = new SubDamage();
-        bool alreadyHave;
-        do
-        {
-            alreadyHave = false;
-            foreach (SubDamage element in subDamageList)
-            {
-                if (subDamage.subDamageType == element.subDamageType)
-                {
-                    alreadyHave = true;
-                    subDamage = new SubDamage();
-                }
-            }
-        } while (alreadyHave);
-
+        SubDamage subDamage = new SubDamage(type, this.Rarity, this.MaterialName);
         return subDamage;
+    }
+    private int NbrAilmentToCreate()
+    {
+        switch (this.Rarity)
+        {
+            case RarityType.Broken: return 0;
+            case RarityType.Common: return UnityEngine.Random.Range(0, 1);
+            case RarityType.Uncommon: return UnityEngine.Random.Range(0, 2);
+            case RarityType.Rare: return UnityEngine.Random.Range(1, 2);
+            case RarityType.Epic: return UnityEngine.Random.Range(2, 4);
+            case RarityType.Legendary: return UnityEngine.Random.Range(3, Enum.GetValues(typeof(AilmentType)).Length);
+        }
+        return 0;
+    }
+    private int NbrAttributeToCreate()
+    {
+        switch (this.Rarity)
+        {
+            case RarityType.Broken: return 0;
+            case RarityType.Common: return UnityEngine.Random.Range(0, 1);
+            case RarityType.Uncommon: return UnityEngine.Random.Range(0, 2);
+            case RarityType.Rare: return UnityEngine.Random.Range(1, 2);
+            case RarityType.Epic: return UnityEngine.Random.Range(2, 4);
+            case RarityType.Legendary: return UnityEngine.Random.Range(3, Enum.GetValues(typeof(AttributeType)).Length);
+        }
+        return 0;
+    }
+    private void CreateAilmentList()
+    {
+        foreach (SubDamage subDamage in subDamageList)
+        {
+            switch (subDamage.subDamageType)
+            {
+                case SubDamageType.BLUNT:
+                    if(CreateAilment(AilmentType.STUN) != null) ailmentList.Add(CreateAilment(AilmentType.STUN));
+                    break;
+                case SubDamageType.PIERCE:
+                    if (CreateAilment(AilmentType.BLEED) != null) ailmentList.Add(CreateAilment(AilmentType.BLEED));
+                    break;
+                case SubDamageType.SLASH:
+                    if (CreateAilment(AilmentType.BLEED) != null) ailmentList.Add(CreateAilment(AilmentType.BLEED));
+                    break;
+            }
+        }
+
+        foreach (Attribute attribute in attributeList)
+        {
+            switch (attribute.attributeType)
+            {
+                case AttributeType.ACID:
+                    if (CreateAilment(AilmentType.BURN) != null) ailmentList.Add(CreateAilment(AilmentType.BURN));
+                    break;
+                case AttributeType.FIRE:
+                    if (CreateAilment(AilmentType.BURN) != null) ailmentList.Add(CreateAilment(AilmentType.BURN));
+                    break;
+                case AttributeType.ICE:
+                    if (CreateAilment(AilmentType.FREEZE) != null) ailmentList.Add(CreateAilment(AilmentType.FREEZE));
+                    break;
+                case AttributeType.LIGHTNING:
+                    if (CreateAilment(AilmentType.STUN) != null) ailmentList.Add(CreateAilment(AilmentType.STUN));
+                    break;
+                case AttributeType.POISON:
+                    if (CreateAilment(AilmentType.POISON) != null) ailmentList.Add(CreateAilment(AilmentType.POISON));
+                    break;
+            }
+        }
+
+        int nbAilment = NbrAilmentToCreate();
+        if (nbAilment == 0) return;
+        for (int i = ailmentList.Count; i <= nbAilment; i++)
+        {
+            ailmentList.Add(CreateAilment());
+        }
+    }
+
+    private void CreateAttributeList()
+    {
+
+        int nbAttribute = NbrAttributeToCreate();
+        if (nbAttribute == 0) return;
+        for (int i = 0; i < nbAttribute; i++)
+        {
+            attributeList.Add(CreateAttribute());
+        }
+    }
+
+    private void CreateSubDamageList()
+    {
+        int pcSlash = 0;
+        int pcBlunt = 0;
+        int pcPierce = 0;
+        switch (WeaponType)
+        {
+            case WeaponType.Axe:
+                pcSlash = UnityEngine.Random.Range(0, 100);
+                pcBlunt = UnityEngine.Random.Range(0, 100);
+                pcPierce = UnityEngine.Random.Range(0, 100);
+                if (pcSlash < 80) subDamageList.Add(CreateSubDamage(SubDamageType.BLUNT));
+                if (pcBlunt < 30) subDamageList.Add(CreateSubDamage(SubDamageType.SLASH));
+                if (pcPierce < 50) subDamageList.Add(CreateSubDamage(SubDamageType.PIERCE));
+                break;
+            case WeaponType.Bow:
+                pcPierce = UnityEngine.Random.Range(0, 100);
+                if (pcPierce < 50) subDamageList.Add(CreateSubDamage(SubDamageType.PIERCE));
+                break;
+            case WeaponType.Daggers:
+                pcPierce = UnityEngine.Random.Range(0, 100);
+                subDamageList.Add(CreateSubDamage(SubDamageType.SLASH));
+                if (pcPierce < 50) subDamageList.Add(CreateSubDamage(SubDamageType.PIERCE));
+                break;
+            case WeaponType.Hammer:
+                subDamageList.Add(CreateSubDamage(SubDamageType.BLUNT));
+                break;
+            case WeaponType.Mace:
+                pcPierce = UnityEngine.Random.Range(0, 100);
+                subDamageList.Add(CreateSubDamage(SubDamageType.BLUNT));
+                if (pcPierce < 30) subDamageList.Add(CreateSubDamage(SubDamageType.PIERCE));
+                break;
+            case WeaponType.Scepter:
+                pcBlunt = UnityEngine.Random.Range(0, 100);
+                if (pcBlunt < 30) subDamageList.Add(CreateSubDamage(SubDamageType.BLUNT));
+                break;
+            case WeaponType.Spear:
+                subDamageList.Add(CreateSubDamage(SubDamageType.PIERCE));
+                break;
+            case WeaponType.Staff:
+                pcBlunt = UnityEngine.Random.Range(0, 100);
+                if (pcBlunt < 50) subDamageList.Add(CreateSubDamage(SubDamageType.BLUNT));
+                break;
+            case WeaponType.Sword:
+                pcSlash = UnityEngine.Random.Range(0, 100);
+                pcPierce = UnityEngine.Random.Range(0, 100);
+                break;
+            case WeaponType.Tome:
+                pcBlunt = UnityEngine.Random.Range(0, 100);
+                if (pcBlunt < 10) subDamageList.Add(CreateSubDamage(SubDamageType.BLUNT));
+                break;
+        }
+    }
+
+    private int InitDamage()
+    {
+        int res = 0;
+        switch (this.MaterialName)
+        {
+            case MaterialType.Bronze:
+                res = UnityEngine.Random.Range(1, 100);
+                break;
+            case MaterialType.Silver:
+                res = UnityEngine.Random.Range(1, 200);
+                break;
+            case MaterialType.Gold:
+                res = UnityEngine.Random.Range(5, 300);
+                break;
+            case MaterialType.Platinum:
+                res = UnityEngine.Random.Range(5, 400);
+                break;
+            case MaterialType.Mithril:
+                res = UnityEngine.Random.Range(10, 500);
+                break;
+            case MaterialType.Orihalcon:
+                res = UnityEngine.Random.Range(10, 600);
+                break;
+            case MaterialType.Adamantium:
+                res = UnityEngine.Random.Range(10, 700);
+                break;
+        }
+
+        switch (this.Rarity)
+        {
+            case RarityType.Broken:
+                res += 0;
+                break;
+            case RarityType.Common:
+                res += UnityEngine.Random.Range(0, 50);
+                break;
+            case RarityType.Uncommon:
+                res += UnityEngine.Random.Range(25, 100);
+                break;
+            case RarityType.Rare:
+                res += UnityEngine.Random.Range(50, 200);
+                break;
+            case RarityType.Epic:
+                res += UnityEngine.Random.Range(100, 300);
+                break;
+            case RarityType.Legendary:
+                res += UnityEngine.Random.Range(200, 399);
+                break;
+        }
+        return res;
+    }
+
+    private float InitAtkPerSec()
+    {
+        switch (WeaponType)
+        {
+            case WeaponType.Axe: return UnityEngine.Random.Range(1.0f, 2.5f);
+            case WeaponType.Bow: return UnityEngine.Random.Range(1.0f, 2.0f);
+            case WeaponType.Daggers: return UnityEngine.Random.Range(0.5f, 1.8f);
+            case WeaponType.Hammer: return UnityEngine.Random.Range(1.5f, 2.5f);
+            case WeaponType.Mace: return UnityEngine.Random.Range(1.8f, 3.0f);
+            case WeaponType.Scepter: return UnityEngine.Random.Range(1.8f, 3.0f);
+            case WeaponType.Spear: return UnityEngine.Random.Range(1.0f, 2.5f);
+            case WeaponType.Staff: return UnityEngine.Random.Range(1.0f, 2.5f);
+            case WeaponType.Sword: return UnityEngine.Random.Range(1.0f, 2.5f);
+            case WeaponType.Tome: return UnityEngine.Random.Range(1.8f, 3.0f);
+        }
+        return 0.0f;
     }
     #region Overriding
     public override string EquipementNameGenerator()
@@ -124,16 +368,16 @@ public class Weapon : Equipment
     {
         switch (WeaponType)
         {
-            case WeaponType.Axe:        return ItemAssets.Instance.axeSprite;
-            case WeaponType.Bow:        return ItemAssets.Instance.bowSprite;
-            case WeaponType.Daggers:    return ItemAssets.Instance.daggersSprite;
-            case WeaponType.Hammer:     return ItemAssets.Instance.hammerSprite;
-            case WeaponType.Mace:       return ItemAssets.Instance.maceSprite;
-            case WeaponType.Scepter:    return ItemAssets.Instance.scepterSprite;
-            case WeaponType.Spear:      return ItemAssets.Instance.spearSprite;
-            case WeaponType.Staff:      return ItemAssets.Instance.staffSprite;
-            case WeaponType.Sword:      return ItemAssets.Instance.swordSprite;
-            case WeaponType.Tome:       return ItemAssets.Instance.tomeSprite;
+            case WeaponType.Axe: return ItemAssets.Instance.axeSprite;
+            case WeaponType.Bow: return ItemAssets.Instance.bowSprite;
+            case WeaponType.Daggers: return ItemAssets.Instance.daggersSprite;
+            case WeaponType.Hammer: return ItemAssets.Instance.hammerSprite;
+            case WeaponType.Mace: return ItemAssets.Instance.maceSprite;
+            case WeaponType.Scepter: return ItemAssets.Instance.scepterSprite;
+            case WeaponType.Spear: return ItemAssets.Instance.spearSprite;
+            case WeaponType.Staff: return ItemAssets.Instance.staffSprite;
+            case WeaponType.Sword: return ItemAssets.Instance.swordSprite;
+            case WeaponType.Tome: return ItemAssets.Instance.tomeSprite;
         }
         return ItemAssets.Instance.defaultSprite;
     }

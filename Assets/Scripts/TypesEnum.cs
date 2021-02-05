@@ -5,29 +5,26 @@ using UnityEngine;
 //EQUIPEMENT
 public enum AttributeType
 {
-    NONE,                                                        //0
-    FIRE,
+    FIRE,                                                       //0
     ICE,
     LIGHTNING,
     POISON,
-    ACID                                                         //5
+    ACID                                                        //4
 }
 
 public enum SubDamageType
-{
-    NONE,                                                       //0
-    SLASH,         //Bleed chance mandatory
+{                                                       
+    SLASH,         //Bleed chance mandatory                     //0
     BLUNT,         //Stun chance mandatory
-    PIERCE         //Ignore Defense (pc of physical damage)     //3
+    PIERCE         //Ignore Defense (pc of physical damage)     //2
 }
 public enum AilmentType
-{
-    NONE,                                                        //0
-    BURN,
+{                                
+    BURN,                                                        //0
     FREEZE,
     STUN,
     POISON,
-    BLEED                                                        //5
+    BLEED                                                        //4
 }
 
 public enum StatType
@@ -79,9 +76,8 @@ public enum MaterialType
 }
 
 public enum ResistanceType
-{
-    NONE,                                                       //0
-    PHYSICAL,
+{                                                       
+    PHYSICAL,                                                  //0
     ATTRIBUTE,
     AILMENT,
     FIRE,
@@ -91,7 +87,7 @@ public enum ResistanceType
     ACID,
     SLASH,
     PIERCE,
-    BLUNT                                                      //11
+    BLUNT                                                      //10
 }
 
 public enum RarityType
