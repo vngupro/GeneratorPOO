@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {                                                   
     public List<Item> itemList = new List<Item>();
+    public GameObject inventory_ui;
+
     [SerializeField] private InventorySlot slotPrefab;
-    [SerializeField] GameObject inventory_ui;
-    [SerializeField] GameObject startPos;
-    [SerializeField] GameObject Prefab;
-    [SerializeField] private int xDistance = 180;                  //distance between two slots
-    [SerializeField] private int yDistance = 160;
+    [SerializeField] private GameObject startPos;
     [SerializeField] AudioSource ZaHando;
-    private int yIndex = -1;
+
+    [Header("DEBUG")]
+    [SerializeField] private int xDistance = 180;                  //distance X between two slots
+    [SerializeField] private int yDistance = 160;                  //distance Y between two slots
+    private int yIndex = -1;                                       //row Count
 
     private void Awake() {
     
@@ -32,20 +34,23 @@ public class Inventory : MonoBehaviour
 
     public void AddItemUI(Item newItem)
     {
-        //show item in inventory ui
-        InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
-        newSlot.item = newItem;
-        newSlot.transform.GetChild(newSlot.transform.childCount - 1).GetComponent<Image>().sprite = newItem.GetSprite();
-        newSlot.transform.SetParent(inventory_ui.transform);
-
-        //change row
-        if ((itemList.Count - 1) % 15 == 0)
+        if(yIndex != 6)
         {
-            yIndex++;
-        }
+            //show item in inventory ui
+            InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
+            newSlot.item = newItem;
+            newSlot.transform.GetChild(newSlot.transform.childCount - 1).GetComponent<Image>().sprite = newItem.GetSprite();
+            newSlot.transform.SetParent(inventory_ui.transform);
 
-        //set position
-        newSlot.transform.position = new Vector2(startPos.transform.position.x + ((itemList.Count - 1) % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
+            //change row
+            if ((itemList.Count - 1) % 15 == 0)
+            {
+                yIndex++;
+            }
+
+            //set position
+            newSlot.transform.position = new Vector2(startPos.transform.position.x + ((itemList.Count - 1) % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
+        }
     }
 
     public void ShowInfo()
@@ -75,6 +80,7 @@ public class Inventory : MonoBehaviour
     {
         ZaHando.Play();
         itemList.Clear();
+        yIndex = -1;
         foreach (Transform child in inventory_ui.transform)
         {
             GameObject.Destroy(child.gameObject);

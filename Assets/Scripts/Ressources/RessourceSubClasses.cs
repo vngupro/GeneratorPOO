@@ -6,12 +6,9 @@ class Bonus : Ressource
 {
     public BonusEffect BEffect { get; set; }
     public string Attribut = "Bonus";
-    public override void DisplayStats()
+    public override string DisplayStats()
     {
-       
-        Stats = "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + BEffect.ToString();
-        base.DisplayStats();
-        
+        return "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + BEffect.ToString();   
     }
     public Bonus(string _name) : base(_name)
     {
@@ -28,11 +25,9 @@ class Malus : Ressource
 {
     public MalusEffect MEffect { get; set; }
     public string Attribut = "Malus";
-    public override void DisplayStats()
-    {
-        
-        Stats = "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + MEffect.ToString();
-        base.DisplayStats();
+    public override string DisplayStats()
+    {     
+        return "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + MEffect.ToString();
     }
     public Malus(string _name) : base(_name)
     {

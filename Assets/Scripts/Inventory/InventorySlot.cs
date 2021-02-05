@@ -15,7 +15,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (mouse_over)
         {
             item.DisplayStats();
-            GameObject.Find("Player").GetComponent<Player>().texte.text = item.Stats;
+            GameObject.Find("Player").GetComponent<Player>().texte.text = item.DisplayStats();
             Debug.Log("Mouse Over");
             if (GameObject.Find("Player").GetComponent<Player>().GetComponent<Player>().mousePos.x <= 0.3f)
             {

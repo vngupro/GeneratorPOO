@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ailment
 {
     //Variable
-    public AilmentType ailmentType = AilmentType.NONE;
+    public AilmentType ailmentType = AilmentType.BLEED;
     public float pct = .0f;
     public int value = 0;
     public float duration = .0f;
@@ -14,9 +14,17 @@ public class Ailment
     //Constructor
     public Ailment()
     {
-        ailmentType = (AilmentType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(AilmentType)).Length);
-        pct = UnityEngine.Random.Range(0.5f, 100.0f);
-        value = UnityEngine.Random.Range(1, 500);
-        duration = UnityEngine.Random.Range(0.5f, 8.0f);
+        this.ailmentType = (AilmentType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(AilmentType)).Length);
+        this.pct = UnityEngine.Random.Range(1.0f, 100.0f);
+        this.value = UnityEngine.Random.Range(1, 999);
+        this.duration = UnityEngine.Random.Range(1.0f, 10.0f);
+    }
+
+    public Ailment(AilmentType type)
+    {
+        this.ailmentType = type;
+        this.pct = UnityEngine.Random.Range(1.0f, 100.0f);
+        this.value = UnityEngine.Random.Range(1, 999);
+        this.duration = UnityEngine.Random.Range(1.0f, 10.0f);
     }
 }

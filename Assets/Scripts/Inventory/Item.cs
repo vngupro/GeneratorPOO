@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Item
 {
-    public string Stats;
     public string Name { get; protected set; } = "";
-    public ItemTypes itemType { get; set; } = ItemTypes.NONE;
+    public ItemTypes itemType = ItemTypes.NONE;
     
     public virtual string EquipementNameGenerator()
     {
         string nameGenerate = "Random Equipment";
         return nameGenerate;
     }
-    public virtual void DisplayStats()
+    public virtual string DisplayStats()
     {
+        return "";
     }
 
     public virtual Sprite GetSprite()

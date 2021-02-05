@@ -4,40 +4,38 @@ using UnityEngine;
 
 public class Equipment : Item
 {
-    //Properties
-   
-    public StatType StatRequire { get; protected set; } = StatType.NONE;
-    public int MaxDurability { get; private set; } = 0;
+    #region Variable | Properties
     public int Level { get; private set; } = 0;
+    public int MaxDurability { get; private set; } = 0;
+    public MaterialType MaterialName { get; private set; } = MaterialType.Bronze;
+    public RarityType Rarity { get; private set; } = RarityType.Broken;
     public int PlayerLevelRequire { get; private set; } = 0;
+    public StatType StatRequire { get; protected set; } = StatType.NONE;
     public int StatValueRequire { get; private set; } = 0;
-    public MaterialType materialType { get; private set; } = MaterialType.Bronze;
-    public RarityType rarity { get; private set; } = RarityType.Broken;
-    public int buyPrice { get; private set; } = 0;
-    public int sellPrice { get; private set; } = 0;
-    //Variable
+    public int BuyPrice { get; private set; } = 0;
+    public int SellPrice { get; private set; } = 0;
     public int durability = 0;
-
-    //Constructor
+    #endregion
+    #region Constructor
     public Equipment()
     {
-        this.MaxDurability = Random.Range(100, 999);
         this.Level = Random.Range(1, 99);
-        this.PlayerLevelRequire = Random.Range(1, 99);
-        this.StatRequire = GetStatRequire();
-        if(this.StatRequire != StatType.NONE)
+        this.MaxDurability = Random.Range(100, 999);
+        this.MaterialName = (MaterialType)(Random.Range(0, 6));
+        this.Rarity = (RarityType)(Random.Range(0, 5));
+        this.PlayerLevelRequire = InitPlayerLevelRequire();
+        this.StatRequire = InitStatRequire();
+        if (this.StatRequire != StatType.NONE)
         {
-            this.StatValueRequire = Random.Range(1, 99);
+            this.StatValueRequire = InitStatValueRequire();
         }
+        this.BuyPrice = InitBuyPrice();
+        this.SellPrice = this.BuyPrice / 2;
         this.durability = this.MaxDurability;
-        this.materialType = (MaterialType)(Random.Range(0, 6));
-        this.rarity = (RarityType)(Random.Range(0, 5));
-        this.buyPrice = Random.Range(10, 9999);
-        this.sellPrice = this.buyPrice / 2;
     }
-
-    //Method
-    public static StatType GetStatRequire()
+    #endregion
+    #region Method
+    private static StatType InitStatRequire()
     {
         StatType statType;
         int rngStatRequire = Random.Range(0, 5 * 3);
@@ -67,4 +65,134 @@ public class Equipment : Item
         }
         return statType;
     }
+    private int InitStatValueRequire()
+    {
+        int value = Random.Range(1, 20);
+        switch (this.MaterialName)
+        {
+            case MaterialType.Bronze:
+                value *= 1;
+                break;
+            case MaterialType.Silver:
+                value *= 2;
+                break;
+            case MaterialType.Gold:
+                value *= 3;
+                break;
+            case MaterialType.Platinum:
+                value *= 4;
+                break;
+            case MaterialType.Mithril:
+                value *= 5;
+                break;
+            case MaterialType.Orihalcon:
+                value *= 6;
+                break;
+            case MaterialType.Adamantium:
+                value *= 7;
+                break;
+            default:
+                value *= 0;
+                break;
+        }
+        int plusOrMinus = Random.Range(0, 99);
+        if (plusOrMinus < 40)
+        {
+            value = AddPlusOrMinus(-value);
+        }
+        else if (plusOrMinus > 60)
+        {
+            value = AddPlusOrMinus(value);
+        }
+        return value;
+    }
+    private int InitPlayerLevelRequire()
+    {
+        switch (this.MaterialName)
+        {
+            case MaterialType.Bronze:       return Random.Range(1, 10);
+            case MaterialType.Silver:       return Random.Range(10, 20);
+            case MaterialType.Gold:         return Random.Range(20, 30);
+            case MaterialType.Platinum:     return Random.Range(30, 40);
+            case MaterialType.Mithril:      return Random.Range(40, 55);
+            case MaterialType.Orihalcon:    return Random.Range(45, 65);
+            case MaterialType.Adamantium:   return Random.Range(55, 70);
+        }
+        return 0;
+    }
+    private int InitBuyPrice()
+    {
+        int price = 0;
+        price += AddRng(this.Level);
+        price += AddRng(this.MaxDurability);
+        price += AddRng(this.MaterialName);
+        price += AddRng(this.Rarity);
+        price += AddRng(this.PlayerLevelRequire);
+        price += AddRng(this.StatValueRequire);
+        return price;
+    }
+    private int AddPlusOrMinus(int value)
+    {
+        if (value > 100)
+        {
+            value += Random.Range(1, 50);
+        }
+        else if (value > 50)
+        {
+            value += Random.Range(1, 25);
+        }
+        else if (value > 25)
+        {
+            value += Random.Range(1, 10);
+        }
+        return Mathf.Abs(value);
+    }
+    private int AddRng(int value)
+    {
+        if (value > 100)
+        {
+            return Random.Range(300, 400);
+        }
+        else if (value > 50)
+        {
+            return Random.Range(200, 300);
+        }
+        else if (value > 25)
+        {
+            return Random.Range(100, 200);
+        }
+        else if (value > 10)
+        {
+            return Random.Range(1, 100);
+        }
+        return 0;
+    }
+    private int AddRng(MaterialType value)
+    {
+        switch (value)
+        {
+            case MaterialType.Bronze:       return Random.Range(1, 50);
+            case MaterialType.Silver:       return Random.Range(50, 100);
+            case MaterialType.Gold:         return Random.Range(100, 150);
+            case MaterialType.Platinum:     return Random.Range(150, 200);
+            case MaterialType.Mithril:      return Random.Range(200, 250);
+            case MaterialType.Orihalcon:    return Random.Range(250, 300);
+            case MaterialType.Adamantium:   return Random.Range(300, 350);
+        }
+        return 0;
+    }
+    private int AddRng(RarityType value)
+    {
+        switch (value)
+        {
+            case RarityType.Broken:         return Random.Range(1, 50);
+            case RarityType.Common:         return Random.Range(50, 100);
+            case RarityType.Uncommon:       return Random.Range(100, 150);
+            case RarityType.Rare:           return Random.Range(150, 200);
+            case RarityType.Epic:           return Random.Range(200, 250);
+            case RarityType.Legendary:      return Random.Range(250, 300);
+        }
+        return 0;
+    }
+    #endregion
 }
