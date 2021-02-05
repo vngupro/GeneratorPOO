@@ -17,7 +17,7 @@ public class Armor : Equipment
         this.ArmorType = (ArmorType)(Random.Range(0, 8));
         this.Value = InitValue();
         CreateResistanceList();
-        this.Name = EquipementNameGenerator();
+        this.Name = NameGenerator();
     }
     #endregion
     #region Method
@@ -88,7 +88,7 @@ public class Armor : Equipment
             resistanceList.Add(CreateResistance());
         }
     }
-    public override string EquipementNameGenerator()
+    public override string NameGenerator()
     {
         string nameGenerate = Rarity.ToString() + " " + MaterialName.ToString() + " " + ArmorType.ToString();
         return nameGenerate;

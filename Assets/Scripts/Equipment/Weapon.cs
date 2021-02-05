@@ -35,7 +35,7 @@ public class Weapon : Equipment
         CreateAttributeList();
         CreateSubDamageList();
         CreateAilmentList();
-        this.Name = EquipementNameGenerator();
+        this.Name = NameGenerator();
     }
     #endregion
     #region Method
@@ -357,7 +357,7 @@ public class Weapon : Equipment
         return 0.0f;
     }
     #region Overriding
-    public override string EquipementNameGenerator()
+    public override string NameGenerator()
     {
         string nameGenerate = Rarity.ToString() + " " + MaterialName.ToString() + " " + WeaponType.ToString();
         return nameGenerate;

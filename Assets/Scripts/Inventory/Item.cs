@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item
 {
     public string Name { get; protected set; } = "";
-    public virtual string EquipementNameGenerator()
+    public virtual string NameGenerator()
     {
         string nameGenerate = "Random Equipment";
         return nameGenerate;
@@ -14,12 +14,10 @@ public class Item
     {
         return "Item";
     }
-
     public virtual Sprite GetSprite()
     {
         return ItemAssets.Instance.defaultSprite;
     }
-
     public virtual Color GetColor()
     {
         Color color = Color.white;
