@@ -6,11 +6,13 @@ public class EquipmentGenerator : MonoBehaviour
 {
     public List<Equipment> equipmentList = new List<Equipment>();
 
+    private int rng = 0;
+    private int previousRng = 0;
+    [SerializeField] AudioSource Anvil;
+
     public void GenerateEquipment()
     {
-        int rng = 0;
-        int previousRng = 0;
-
+        Anvil.Play();
         for(int i = 0; i < 3; i++)
         {
             rng = Random.Range(0, 99);
@@ -45,4 +47,42 @@ public class EquipmentGenerator : MonoBehaviour
             }
         }
     }
+
+    /*     
+ *   * Equipement_UI -> recuperer List<Equipment>
+     * Sprite pool 
+     * private override -> recuperer les valeurs de variables
+     * Unity Events -> automatic
+*/
+
+    /* Inventory Class Monobehavior
+     * -> List<InventorySlot> slots;
+     * 
+     * InventorySlot -> Monobehavior
+     * Item -> No monobehavior
+     * 
+     * Equipment 
+     *              -> Inherit de Item
+     * Ressource 
+     * 
+     * A chaque fois que tu generates E ou R
+     *      -> Instancie 1 Inventory Slot -> et tu fais passer en pointeur E ou R en tant que Item 
+                                             que tu stock dans InventorySlot.item;
+     * 
+     * ItemWorld -> Monobehavior pour apparaitre dans le game
+     * 
+     * Item -> Ressources
+     *      -> Equipments
+     * Ressouces ou Equipements pas hériter de Item
+     * Tu peux pas les mettres dans InventorySlots 
+     * 
+     * InventorySlot = 1 slot 
+     *  -> Equipemnt = nullptr;
+     *  -> Ressouces = nullptr;
+     *  selon les trucs generer -> Equipmenet = generate equipment
+     *                          -> Ressource = genereate ressource
+     *                          l'un ou l'autre mais jamais les 2 (XOR)
+     *                           
+     *  
+     */
 }

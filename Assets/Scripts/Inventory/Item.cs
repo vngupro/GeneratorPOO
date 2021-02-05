@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item
 {
+    public string Stats;
     public string Name { get; protected set; } = "";
     public ItemTypes itemType = ItemTypes.NONE;
     
@@ -11,6 +12,9 @@ public class Item
     {
         string nameGenerate = "Random Equipment";
         return nameGenerate;
+    }
+    public virtual void DisplayStats()
+    {
     }
 
     public virtual Sprite GetSprite()

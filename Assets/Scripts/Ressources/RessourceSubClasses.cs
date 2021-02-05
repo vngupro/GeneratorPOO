@@ -6,15 +6,21 @@ class Bonus : Ressource
 {
     public BonusEffect BEffect { get; set; }
     public string Attribut = "Bonus";
-    public override void AfficherInfos()
+    public override void DisplayStats()
     {
-        Debug.Log("Ressource " + name);
-        base.AfficherInfos();
+       
+        Stats = "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + BEffect.ToString();
+        base.DisplayStats();
+        
     }
     public Bonus(string _name) : base(_name)
     {
         name = _name;
         BEffect = (BonusEffect)(Random.Range(0, 4));
+    }
+    public override Sprite GetSprite()
+    {
+        return ItemAssets.Instance.Good;
     }
 }
 
@@ -22,14 +28,19 @@ class Malus : Ressource
 {
     public MalusEffect MEffect { get; set; }
     public string Attribut = "Malus";
-    public override void AfficherInfos()
+    public override void DisplayStats()
     {
-        Debug.Log("Ressource " + name);
-        base.AfficherInfos();
+        
+        Stats = "class : " + this.GetType().ToString() + " | name : " + Name + " Type : " + itemType.ToString() + " | Effect : " + MEffect.ToString();
+        base.DisplayStats();
     }
     public Malus(string _name) : base(_name)
     {
         name = _name;
         MEffect = (MalusEffect)(Random.Range(0,4));
+    }
+    public override Sprite GetSprite()
+    {
+        return ItemAssets.Instance.Bad;
     }
 }

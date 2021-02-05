@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {                                                   
-    private List<Item> itemList = new List<Item>();
+    public List<Item> itemList = new List<Item>();
     [SerializeField] private InventorySlot slotPrefab;
     [SerializeField] GameObject inventory_ui;
     [SerializeField] GameObject startPos;
-    [SerializeField] private int xDistance = 160;                  //distance between two slots
+    [SerializeField] GameObject Prefab;
+    [SerializeField] private int xDistance = 180;                  //distance between two slots
     [SerializeField] private int yDistance = 160;
+    [SerializeField] AudioSource ZaHando;
     private int yIndex = -1;
 
     private void Awake() {
@@ -23,43 +25,27 @@ public class Inventory : MonoBehaviour
     {
         if(itemList.Count != 15 * 6)
         {
-            InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
-            newSlot.transform.SetParent(inventory_ui.transform);
-            if (itemList.Count % 15 == 0)
-            {
-                yIndex++;
-            }
-            newSlot.transform.position = new Vector2(startPos.transform.position.x + (itemList.Count % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
-            newSlot.item = newItem;
             itemList.Add(newItem);
-            Debug.Log(newSlot.item.Name);
+            AddItemUI(newItem);
         }
-
-        
-        //RefreshInventoryItems();
     }
 
-    private void RefreshInventoryItems()
+    public void AddItemUI(Item newItem)
     {
+        //show item in inventory ui
+        InventorySlot newSlot = Instantiate(slotPrefab, inventory_ui.transform);
+        newSlot.item = newItem;
+        newSlot.transform.GetChild(newSlot.transform.childCount - 1).GetComponent<Image>().sprite = newItem.GetSprite();
+        newSlot.transform.SetParent(inventory_ui.transform);
 
-        //int x = 0;
-        //int y = 0;
-        //float itemSlotCellSize = 26.0f;
+        //change row
+        if ((itemList.Count - 1) % 15 == 0)
+        {
+            yIndex++;
+        }
 
-        //foreach (InventorySlot slot in slots)
-        //{
-        //    RectTransform slotRectTransform = Instantiate(slotTemplate, slotContainer).GetComponent<RectTransform>();
-        //    slotRectTransform.gameObject.SetActive(true);
-        //    slotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
-        //    Image image = slotRectTransform.Find("image").GetComponent<Image>();
-        //    image.sprite = slot.item.GetSprite();
-        //    x++;
-        //    if (x > 20)
-        //    {
-        //        x = 0;
-        //        y++;
-        //    }
-        //}
+        //set position
+        newSlot.transform.position = new Vector2(startPos.transform.position.x + ((itemList.Count - 1) % 15) * xDistance, startPos.transform.position.y - yIndex * yDistance);
     }
 
     public void ShowInfo()
@@ -83,6 +69,15 @@ public class Inventory : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+    public void Reset()
+    {
+        ZaHando.Play();
+        itemList.Clear();
+        foreach (Transform child in inventory_ui.transform)
+        {
+            GameObject.Destroy(child.gameObject);
         }
     }
 

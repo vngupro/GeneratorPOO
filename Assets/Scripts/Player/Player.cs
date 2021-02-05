@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
+    public Text texte;
     private GameObject itemInHand = null;                       //GameObject inside player hand
-    private Vector2 mousePos = new Vector2(0, 0);               //Mouse Position in World Space
-    private bool hasItemInHand = false;                         //Check if player got an item in hand
+    public Vector2 mousePos = new Vector2(0, 0);               //Mouse Position in World Space
+    private bool hasItemInHand = false;
+    public GameObject StatsFrame;
     private void Awake()
     {
+
         //Initialize
         itemInHand = null; 
         mousePos = new Vector2(0, 0);
@@ -22,14 +27,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        ActionOnClick();
+        mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        //ActionOnClick();
         MoveItemInHand();
         PutDownItem();
         HoverItem();
     }
 
-    private void ActionOnClick()
+    /*private void ActionOnClick()
     {
         if (Input.GetMouseButtonDown(0) && !hasItemInHand)
         {
@@ -45,23 +50,15 @@ public class Player : MonoBehaviour
                 hasItemInHand = true;
             }
         }
-    }
+    }*/
 
     private void HoverItem()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hoverItem = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Item"));
-        if (hoverItem)
-        {
-            //craft.cs
-            //UserEvent.showItemInfo.Invoke(hoverItem.transform.gameObject);
-        }
-        else
-        {
-            //craft.cs
-            //UserEvent.showItemInfo.Invoke(null);
-        }
+        //RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        //test = hit.transform.gameObject.GetComponent<Item>().GetType().ToString();
+        //texte.text = hit.transform.gameObject.GetComponent<Item>().GetType().ToString();
     }
+    
 
     //Move Item with Player
     private void MoveItemInHand()
