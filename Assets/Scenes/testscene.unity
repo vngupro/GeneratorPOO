@@ -259,7 +259,7 @@ MonoBehaviour:
   startPos: {fileID: 570918989}
   Prefab: {fileID: 0}
   xDistance: 120
-  yDistance: 140
+  yDistance: 130
   ZaHando: {fileID: 320797151}
 --- !u!4 &320797150
 Transform:

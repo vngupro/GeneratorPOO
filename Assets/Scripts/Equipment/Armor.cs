@@ -98,5 +98,9 @@ public class Armor : Equipment
         }
         return ItemAssets.Instance.defaultSprite;
     }
+    public override string DisplayStats()
+    {
+        return "Armor";
+    }
     #endregion
 }

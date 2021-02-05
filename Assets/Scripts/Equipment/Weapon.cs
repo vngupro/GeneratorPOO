@@ -381,6 +381,11 @@ public class Weapon : Equipment
         }
         return ItemAssets.Instance.defaultSprite;
     }
+
+    public override string DisplayStats()
+    {
+        return "Weapon";
+    }
     #endregion
     #endregion
 }
